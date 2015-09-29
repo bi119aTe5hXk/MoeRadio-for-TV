@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SplitViewController.h
 //  MoeRadio for TV
 //
 //  Created by bi119aTe5hXk on 2015/09/27.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-
+#import "PlayListViewController.h"
+@interface SplitViewController : UISplitViewController<UISplitViewControllerDelegate>{
+    
+}
 
 @end
-

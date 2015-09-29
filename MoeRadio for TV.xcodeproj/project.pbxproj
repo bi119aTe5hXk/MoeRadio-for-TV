@@ -9,9 +9,17 @@
 /* Begin PBXBuildFile section */
 		4711A6BC1BB7D698006B6B30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6BB1BB7D698006B6B30 /* main.m */; };
 		4711A6BF1BB7D698006B6B30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6BE1BB7D698006B6B30 /* AppDelegate.m */; };
-		4711A6C21BB7D698006B6B30 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6C11BB7D698006B6B30 /* ViewController.m */; };
 		4711A6C51BB7D698006B6B30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4711A6C31BB7D698006B6B30 /* Main.storyboard */; };
 		4711A6C71BB7D698006B6B30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4711A6C61BB7D698006B6B30 /* Assets.xcassets */; };
+		4711A6D21BB7D894006B6B30 /* MoeFmAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6CF1BB7D894006B6B30 /* MoeFmAPI.m */; };
+		4711A6D31BB7D894006B6B30 /* MoeFmPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6D11BB7D894006B6B30 /* MoeFmPlayer.m */; };
+		4711A6D91BB7D90A006B6B30 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6D51BB7D90A006B6B30 /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4711A6DF1BB7DA1A006B6B30 /* UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6DE1BB7DA1A006B6B30 /* UIDevice+Hardware.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4711A6E21BB7DB73006B6B30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4711A6E11BB7DB73006B6B30 /* UIKit.framework */; };
+		4711A6E41BB7DB84006B6B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4711A6E31BB7DB84006B6B30 /* Foundation.framework */; };
+		4711A6E81BB7DEAA006B6B30 /* NowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6E71BB7DEAA006B6B30 /* NowPlayingViewController.m */; };
+		4711A6EC1BB7EA27006B6B30 /* PlayListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */; };
+		4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EE1BB7F650006B6B30 /* SplitViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,11 +27,27 @@
 		4711A6BB1BB7D698006B6B30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4711A6BD1BB7D698006B6B30 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4711A6BE1BB7D698006B6B30 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4711A6C01BB7D698006B6B30 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4711A6C11BB7D698006B6B30 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4711A6C41BB7D698006B6B30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4711A6C61BB7D698006B6B30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4711A6C81BB7D698006B6B30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4711A6CE1BB7D894006B6B30 /* MoeFmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoeFmAPI.h; sourceTree = "<group>"; };
+		4711A6CF1BB7D894006B6B30 /* MoeFmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoeFmAPI.m; sourceTree = "<group>"; };
+		4711A6D01BB7D894006B6B30 /* MoeFmPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoeFmPlayer.h; sourceTree = "<group>"; };
+		4711A6D11BB7D894006B6B30 /* MoeFmPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoeFmPlayer.m; sourceTree = "<group>"; };
+		4711A6D41BB7D90A006B6B30 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		4711A6D51BB7D90A006B6B30 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		4711A6DC1BB7D947006B6B30 /* API.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		4711A6DD1BB7DA1A006B6B30 /* UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Hardware.h"; sourceTree = "<group>"; };
+		4711A6DE1BB7DA1A006B6B30 /* UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Hardware.m"; sourceTree = "<group>"; };
+		4711A6E11BB7DB73006B6B30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4711A6E31BB7DB84006B6B30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4711A6E51BB7DCF2006B6B30 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4711A6E61BB7DEAA006B6B30 /* NowPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingViewController.h; sourceTree = "<group>"; };
+		4711A6E71BB7DEAA006B6B30 /* NowPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingViewController.m; sourceTree = "<group>"; };
+		4711A6EA1BB7EA27006B6B30 /* PlayListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListViewController.h; sourceTree = "<group>"; };
+		4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListViewController.m; sourceTree = "<group>"; };
+		4711A6ED1BB7F650006B6B30 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
+		4711A6EE1BB7F650006B6B30 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4711A6E41BB7DB84006B6B30 /* Foundation.framework in Frameworks */,
+				4711A6E21BB7DB73006B6B30 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +66,8 @@
 		4711A6AE1BB7D697006B6B30 = {
 			isa = PBXGroup;
 			children = (
+				4711A6E31BB7DB84006B6B30 /* Foundation.framework */,
+				4711A6E11BB7DB73006B6B30 /* UIKit.framework */,
 				4711A6B91BB7D698006B6B30 /* MoeRadio for TV */,
 				4711A6B81BB7D698006B6B30 /* Products */,
 			);
@@ -56,11 +84,21 @@
 		4711A6B91BB7D698006B6B30 /* MoeRadio for TV */ = {
 			isa = PBXGroup;
 			children = (
+				4711A6DC1BB7D947006B6B30 /* API.h */,
 				4711A6BD1BB7D698006B6B30 /* AppDelegate.h */,
 				4711A6BE1BB7D698006B6B30 /* AppDelegate.m */,
-				4711A6C01BB7D698006B6B30 /* ViewController.h */,
-				4711A6C11BB7D698006B6B30 /* ViewController.m */,
+				4711A6ED1BB7F650006B6B30 /* SplitViewController.h */,
+				4711A6EE1BB7F650006B6B30 /* SplitViewController.m */,
+				4711A6E61BB7DEAA006B6B30 /* NowPlayingViewController.h */,
+				4711A6E71BB7DEAA006B6B30 /* NowPlayingViewController.m */,
 				4711A6C31BB7D698006B6B30 /* Main.storyboard */,
+				4711A6CE1BB7D894006B6B30 /* MoeFmAPI.h */,
+				4711A6CF1BB7D894006B6B30 /* MoeFmAPI.m */,
+				4711A6D01BB7D894006B6B30 /* MoeFmPlayer.h */,
+				4711A6D11BB7D894006B6B30 /* MoeFmPlayer.m */,
+				4711A6EA1BB7EA27006B6B30 /* PlayListViewController.h */,
+				4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */,
+				4711A6E91BB7DF1B006B6B30 /* AudioStreamer */,
 				4711A6C61BB7D698006B6B30 /* Assets.xcassets */,
 				4711A6C81BB7D698006B6B30 /* Info.plist */,
 				4711A6BA1BB7D698006B6B30 /* Supporting Files */,
@@ -71,9 +109,21 @@
 		4711A6BA1BB7D698006B6B30 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4711A6E51BB7DCF2006B6B30 /* PrefixHeader.pch */,
 				4711A6BB1BB7D698006B6B30 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4711A6E91BB7DF1B006B6B30 /* AudioStreamer */ = {
+			isa = PBXGroup;
+			children = (
+				4711A6D41BB7D90A006B6B30 /* AudioStreamer.h */,
+				4711A6D51BB7D90A006B6B30 /* AudioStreamer.m */,
+				4711A6DD1BB7DA1A006B6B30 /* UIDevice+Hardware.h */,
+				4711A6DE1BB7DA1A006B6B30 /* UIDevice+Hardware.m */,
+			);
+			name = AudioStreamer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,9 +195,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4711A6C21BB7D698006B6B30 /* ViewController.m in Sources */,
+				4711A6DF1BB7DA1A006B6B30 /* UIDevice+Hardware.m in Sources */,
+				4711A6E81BB7DEAA006B6B30 /* NowPlayingViewController.m in Sources */,
 				4711A6BF1BB7D698006B6B30 /* AppDelegate.m in Sources */,
+				4711A6D91BB7D90A006B6B30 /* AudioStreamer.m in Sources */,
+				4711A6EC1BB7EA27006B6B30 /* PlayListViewController.m in Sources */,
+				4711A6D31BB7D894006B6B30 /* MoeFmPlayer.m in Sources */,
 				4711A6BC1BB7D698006B6B30 /* main.m in Sources */,
+				4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */,
+				4711A6D21BB7D894006B6B30 /* MoeFmAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +306,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = "MoeRadio for TV/PrefixHeader.pch";
 				INFOPLIST_FILE = "MoeRadio for TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HTandL.MoeRadio-for-TV";
@@ -262,6 +320,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = "MoeRadio for TV/PrefixHeader.pch";
 				INFOPLIST_FILE = "MoeRadio for TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HTandL.MoeRadio-for-TV";
@@ -288,6 +348,7 @@
 				4711A6CD1BB7D698006B6B30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
