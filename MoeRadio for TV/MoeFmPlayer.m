@@ -187,14 +187,7 @@
 	if(!self.streamer){
 		NSDictionary *music = [self.playlist objectAtIndex:self.trackNum];
 		NSString *audioAddress = [music objectForKey:@"url"];
-        if (_highQualityAudio == NO) {
-            audioAddress = [audioAddress stringByReplacingOccurrencesOfString:@"_320"
-                                                                   withString:@""];
-            audioAddress = [audioAddress stringByReplacingOccurrencesOfString:@"_192"
-                                                                   withString:@""];
-            audioAddress = [audioAddress stringByReplacingOccurrencesOfString:@"_128"
-                                                                   withString:@""];
-        }
+
 		_audioURL = [NSURL URLWithString:audioAddress];
 		[self createStreamerWithURL:_audioURL];
 		[self updateMetadata];

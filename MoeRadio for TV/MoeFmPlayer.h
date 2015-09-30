@@ -38,8 +38,7 @@
 
 @property (strong, nonatomic) NSArray *playlist;
 @property (assign, nonatomic) BOOL allowNetworkAccess;
-@property (assign, nonatomic) BOOL voiceOverP;
-@property (assign, nonatomic) BOOL highQualityAudio;
+
 
 - (MoeFmPlayer *) initWithDelegate:(NSObject <MoeFmPlayerDelegate> *)delegate;
 

@@ -101,7 +101,7 @@ typedef enum {
     NSMutableDictionary *nowPlayingInfo = [NSMutableDictionary dictionary];
     
     // Update Song Title
-    self.songNameLabel.text = [metadata objectForKey:@"sub_title"];
+    self.songNameLabel.text = [self htmlEntityDecode:[metadata objectForKey:@"sub_title"]];
     if([self.songNameLabel.text length] == 0) {
         self.songNameLabel.text = @"Unknown song";
     }
@@ -121,7 +121,7 @@ typedef enum {
     }
     [nowPlayingInfo setValue:album forKey:MPMediaItemPropertyAlbumTitle];
     
-    self.songInfoLabel.text = [NSString stringWithFormat:@"%@ / %@", artist, album];
+    self.songInfoLabel.text = [self htmlEntityDecode:[NSString stringWithFormat:@"%@ / %@", artist, album]];
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
         // Post to NowPlayingInfoCenter
@@ -373,5 +373,31 @@ typedef enum {
     // Pass the selected object to the new view controller.
 }
 */
+-(NSString *)htmlEntityDecode:(NSString *)string
+{
+    string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    string = [string stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
+    string = [string stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    string = [string stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    string = [string stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    string = [string stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+    
+    string = [string stringByReplacingOccurrencesOfString:@"&rarr;" withString:@"→"];
+    string = [string stringByReplacingOccurrencesOfString:@"&larr;" withString:@"←"];
+    string = [string stringByReplacingOccurrencesOfString:@"&darr;" withString:@"↓"];
+    string = [string stringByReplacingOccurrencesOfString:@"&uarr;" withString:@"↑"];
+    string = [string stringByReplacingOccurrencesOfString:@"&hellip;" withString:@"…"];
+    string = [string stringByReplacingOccurrencesOfString:@"&infin;" withString:@"∞"];
+    string = [string stringByReplacingOccurrencesOfString:@"&mu;" withString:@"μ"];
+    string = [string stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];
+    string = [string stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"“"];
+    string = [string stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"”"];
+    string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"“"];
+    string = [string stringByReplacingOccurrencesOfString:@"&middot;" withString:@"·"];
+    string = [string stringByReplacingOccurrencesOfString:@"&minus;" withString:@"−"];
+    string = [string stringByReplacingOccurrencesOfString:@"&times;" withString:@"×"];
+    string = [string stringByReplacingOccurrencesOfString:@"&rsquo;" withString:@"’"];
+    return string;
+}
 
 @end
