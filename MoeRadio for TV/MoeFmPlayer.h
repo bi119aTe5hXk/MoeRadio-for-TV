@@ -20,8 +20,6 @@
 - (void)player:(MoeFmPlayer *)player updateMetadata:(NSDictionary *)metadata;
 - (void)player:(MoeFmPlayer *)player stateChangesTo:(AudioStreamerState)state;
 
-//- (void)player:(MoeFmPlayer *)player readyWithPlaylist:(NSArray *)playlist;
-
 
 - (void)player:(MoeFmPlayer *)player stoppingWithError:(NSString *)error;
 

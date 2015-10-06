@@ -70,7 +70,62 @@ typedef enum {
                                              selector:@selector(receiveRefrashPlayListNotification:)
                                                  name:@"RefrashPlayListNotification"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivePlayBackControlNotification:)
+                                                 name:@"PlayBackControlNotification"
+                                               object:nil];
+    
+    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
+    [self.view addGestureRecognizer:tabgr];
+    
+    // Allow application to recieve remote control
+    UIApplication *application = [UIApplication sharedApplication];
+    if([application respondsToSelector:@selector(beginReceivingRemoteControlEvents)])
+        [application beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder]; // this enables listening for events
+    
 
+
+}
+/* The iPod controls will send these events when the app is in the background */
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    switch (event.subtype) {
+        case UIEventSubtypeRemoteControlTogglePlayPause:
+            [self startOrPause];
+            break;
+        case UIEventSubtypeRemoteControlPlay:
+            [self start];
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            [self pause];
+            break;
+        case UIEventSubtypeRemoteControlStop:
+            [self stop];
+            break;
+        case UIEventSubtypeRemoteControlNextTrack:
+            [self next];
+            break;
+        case UIEventSubtypeRemoteControlPreviousTrack:
+            [self previous];
+            break;
+        default:
+            break;
+    }
+}
+-(void)receivePlayBackControlNotification:(NSNotification *)notify{
+    [self startOrPause];
+}
+-(void)handleTap:(UITapGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"button pressed");
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        //NSLog(@"button released");
+        [self startOrPause];
+    }
+    
 }
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -103,21 +158,21 @@ typedef enum {
     // Update Song Title
     self.songNameLabel.text = [self htmlEntityDecode:[metadata objectForKey:@"sub_title"]];
     if([self.songNameLabel.text length] == 0) {
-        self.songNameLabel.text = @"Unknown song";
+        self.songNameLabel.text = @"未知歌曲";
     }
     [nowPlayingInfo setValue:self.songNameLabel.text forKey:MPMediaItemPropertyTitle];
     
     // Update Artist
     NSString *artist = [metadata objectForKey:@"artist"];
     if([artist length] == 0) {
-        artist = @"Unknown artist";
+        artist = @"未知艺术家";
     }
     [nowPlayingInfo setValue:artist forKey:MPMediaItemPropertyArtist];
     
     // Update Album
     NSString *album = [metadata objectForKey:@"wiki_title"];
     if([album length] == 0) {
-        album = @"Unknown album";
+        album = @"未知专辑";
     }
     [nowPlayingInfo setValue:album forKey:MPMediaItemPropertyAlbumTitle];
     
@@ -134,7 +189,7 @@ typedef enum {
     NSString *imageAddress = [[metadata objectForKey:@"cover"] objectForKey:coverSize];
     NSURL *imageURL = [NSURL URLWithString:imageAddress];
     
-    NSLog(@"Requesting image");
+    //NSLog(@"Requesting image");
     if(self.imageAPI.isBusy){
         [self.imageAPI cancelRequest];
         NSLog(@"Image API request canceled");
@@ -161,9 +216,9 @@ typedef enum {
 
 - (void) resetMetadataView
 {
-    self.songNameLabel.text = NSLocalizedString(@"DEFAULT_SONG", @"");;
-    self.songInfoLabel.text = NSLocalizedString(@"DEFAULT_INFO_LABEL", @"");;
-    self.songArtworkImage.image = [UIImage imageNamed:@"cover_large.png"];
+    self.songNameLabel.text = @"加载中……";
+    self.songInfoLabel.text = @"请等待……（>人<）";
+    //self.songArtworkImage.image = [UIImage imageNamed:@"cover_large.png"];
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
         [self.songProgressIndicator setProgress:1 animated:YES];//ios5
@@ -220,7 +275,7 @@ typedef enum {
 
 - (void)player:(MoeFmPlayer *)player needToUpdatePlaylist:(NSArray *)currentplaylist
 {
-    NSLog(@"Requesting playlist");
+    //NSLog(@"Requesting playlist");
     if(self.playlistAPI.isBusy){
         NSLog(@"Playlist API is busy, try again later");
         return;
@@ -254,30 +309,30 @@ typedef enum {
         case AS_WAITING_FOR_DATA:
             self.playButton.alpha = 1;
             //self.playButton.imageView.image = [UIImage imageNamed:@"pause.png"];
-            [self.playButton setTitle:@"Pause" forState:UIControlStateNormal];
+            [self.playButton setTitle:@"暂停" forState:UIControlStateNormal];
             [self.songBufferingIndicator startAnimating];
             break;
         case AS_BUFFERING:
             //self.playButton.imageView.image = [UIImage imageNamed:@"pause.png"];
-            [self.playButton setTitle:@"Pause" forState:UIControlStateNormal];
+            [self.playButton setTitle:@"暂停" forState:UIControlStateNormal];
             self.playButton.alpha = 1;
             [self.songBufferingIndicator startAnimating];
             break;
         case AS_PLAYING:
             self.playButton.alpha = 1;
             //self.playButton.imageView.image = [UIImage imageNamed:@"pause.png"];
-            [self.playButton setTitle:@"Pause" forState:UIControlStateNormal];
+            [self.playButton setTitle:@"暂停" forState:UIControlStateNormal];
             [self.songBufferingIndicator stopAnimating];
             break;
         case AS_PAUSED:
             self.playButton.alpha = 1;
             //self.playButton.imageView.image = [UIImage imageNamed:@"play.png"];
-            [self.playButton setTitle:@"Play" forState:UIControlStateNormal];
+            [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
             [self.songBufferingIndicator stopAnimating];
             break;
         case AS_STOPPED:
             //self.playButton.imageView.image = [UIImage imageNamed:@"play.png"];
-            [self.playButton setTitle:@"Play" forState:UIControlStateNormal];
+            [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
             self.playButton.alpha = 1;
             [self.songBufferingIndicator stopAnimating];
             break;
@@ -305,8 +360,6 @@ typedef enum {
 - (void)api:(MoeFmAPI *)api readyWithPlaylist:(NSArray *)playlist
 {
     [self.player setPlaylist:playlist];
-    //[self.playlistview initPlaylist:playlist];
-    
     
     NSDictionary *dic = [NSDictionary dictionaryWithObject:playlist forKey:@"playlist"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableViewNotification"
@@ -315,17 +368,14 @@ typedef enum {
     
 }
 
-- (void)api:(MoeFmAPI *)api readyWithImage:(UIImage *)image
-{
+- (void)api:(MoeFmAPI *)api readyWithImage:(UIImage *)image{
     [self updateArtworkWithImage:image];
 }
 
-- (void)api:(MoeFmAPI *)api requestFailedWithError:(NSError *)error
-{
+- (void)api:(MoeFmAPI *)api requestFailedWithError:(NSError *)error{
     
 }
 -(void)player:(MoeFmPlayer *)player updatetrackmun:(NSInteger)trackmun{
-    
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:trackmun] forKey:@"songnum"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NowPlayingNumNotification"
                                                         object:self
@@ -335,7 +385,6 @@ typedef enum {
     NSInteger songnum = [[[notification userInfo] valueForKey:@"songnum"] integerValue];
     [self stop];
     [self.player startTrack:songnum];
-    NSLog(@"songnum:%ld",songnum);
 }
 -(void)receiveRefrashPlayListNotification:(NSNotification *) notification{
     [self resetMetadataView];
@@ -364,15 +413,6 @@ typedef enum {
     [self next];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 -(NSString *)htmlEntityDecode:(NSString *)string
 {
     string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];

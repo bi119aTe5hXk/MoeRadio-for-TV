@@ -17,13 +17,14 @@
     
     
     // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = YES;
+     //self.clearsSelectionOnViewWillAppear = YES;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     //_playlist1 = [NSArray new];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.allowsMultipleSelection = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveReloadTableViewNotification:)
@@ -33,11 +34,26 @@
                                              selector:@selector(receiveNowPlayingNumNotification:)
                                                  name:@"NowPlayingNumNotification"
                                                object:nil];
+    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
+    [self.view addGestureRecognizer:tabgr];
    
     
 }
+-(void)handleTap:(UITapGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"button pressed");
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        //NSLog(@"button released");
+        //[self togglePlaybackState:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayBackControlNotification"
+                                                            object:self];
+    }
+    
+}
 -(void)viewWillAppear:(BOOL)animated{
-    playlist1 = [NSArray new];
+    //playlist1 = [NSArray new];
     
 }
 
@@ -51,16 +67,15 @@
         NSInteger songnum = [[[notification userInfo] valueForKey:@"songnum"] integerValue];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:songnum inSection:0];
         [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-
+        
     }
     
 }
 - (void)initPlaylist:(NSArray *)playlist{
     playlist1 = playlist;
-    NSLog(@"willrefreshtable");
     [self.tableView reloadData];
     //NSLog(@"PlayListList:%@",playlist1);
-    
+    //[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     
 }
 
@@ -80,7 +95,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
     
-    
     return [playlist1 count]+1;
 }
 
@@ -93,7 +107,7 @@
     //    }
     
     if (indexPath.row == [playlist1 count]) {
-        cell.textLabel.text = @"            Refrash List";
+        cell.textLabel.text = @"                刷新列表";//OKay, I am just lazy.
         cell.detailTextLabel.text = @"";
     }else{
         NSArray *arr = [playlist1 objectAtIndex:indexPath.row];
@@ -104,12 +118,12 @@
         // Update Artist
         NSString *artist = [arr valueForKey:@"artist"];
         if([artist length] == 0) {
-            artist = @"Unknown artist";
+            artist = @"未知艺术家";
         }
         // Update Album
         NSString *album = [arr valueForKey:@"wiki_title"];
         if([album length] == 0) {
-            album = @"Unknown album";
+            album = @"未知专辑";
         }
         cell.detailTextLabel.text = [self htmlEntityDecode:[NSString stringWithFormat:@"%@ / %@", artist, album] ];
     }
@@ -123,7 +137,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //NSString *songid = [[playlist1 objectAtIndex:indexPath.row] valueForKey:@"sub_id"];
     if (indexPath.row == [playlist1 count]) {
         [self refrashlist:nil];
     }else{
@@ -137,54 +150,15 @@
     }
     
 }
+- (BOOL)tableView:(UITableView *)tableView canFocusRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
 -(IBAction)refrashlist:(id)sender{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"RefrashPlayListNotification"
                                                         object:self];
     
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 -(NSString *)htmlEntityDecode:(NSString *)string
 {
     string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];

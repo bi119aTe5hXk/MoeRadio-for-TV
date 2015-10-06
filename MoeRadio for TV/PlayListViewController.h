@@ -14,7 +14,6 @@
     NSArray *playlist1;
 }
 
-//@property (nonatomic, strong) IBOutlet UITableView *tableView1;
 -(IBAction)refrashlist:(id)sender;
 - (void)initPlaylist:(NSArray *)playlist;
 

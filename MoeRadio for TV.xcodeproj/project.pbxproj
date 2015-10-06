@@ -157,6 +157,11 @@
 				TargetAttributes = {
 					4711A6B61BB7D698006B6B30 = {
 						CreatedOnToolsVersion = 7.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.appletvos = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -306,12 +311,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huang Xingkai (HR66SGQEZ4)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "MoeRadio for TV/PrefixHeader.pch";
 				INFOPLIST_FILE = "MoeRadio for TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HTandL.MoeRadio-for-TV";
+				PRODUCT_BUNDLE_IDENTIFIER = com.HTandL.MoeRadioTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c65f2bda-286a-4c0e-a493-3910731bbf9c";
 			};
 			name = Debug;
 		};
@@ -320,12 +327,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Huang Xingkai (HR66SGQEZ4)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "MoeRadio for TV/PrefixHeader.pch";
 				INFOPLIST_FILE = "MoeRadio for TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HTandL.MoeRadio-for-TV";
+				PRODUCT_BUNDLE_IDENTIFIER = com.HTandL.MoeRadioTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c65f2bda-286a-4c0e-a493-3910731bbf9c";
 			};
 			name = Release;
 		};

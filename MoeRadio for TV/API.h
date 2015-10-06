@@ -10,7 +10,6 @@
 #define MFCkey @"749ac44d937e891d96f75a6c99b541070560addff"
 #define MFCSkey @"ed367f9bcecf0fd7412b00bf746df8ed"
 
-#define mainurl @"http://moe.fm/"
 #define playlisturl @"http://moe.fm/listen/playlist?api=json&perpage=30"
 
 

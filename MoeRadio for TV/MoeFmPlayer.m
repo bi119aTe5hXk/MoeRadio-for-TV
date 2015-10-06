@@ -107,7 +107,6 @@
 
 - (void)streamerStateChanged:(NSNotification *)aNotification
 {
-//	MFMAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	
 	[self.delegate player:self stateChangesTo:[self.streamer state]];
 	
