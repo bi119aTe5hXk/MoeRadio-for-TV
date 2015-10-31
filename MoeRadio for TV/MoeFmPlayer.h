@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import "AudioStreamer.h"
 #import "API.h"
 @class MoeFmPlayer;

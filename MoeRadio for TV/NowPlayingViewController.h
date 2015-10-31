@@ -11,6 +11,7 @@
 #import "MoeFmAPI.h"
 
 
+
 @interface NowPlayingViewController : UIViewController<MoeFmPlayerDelegate, MoeFmAPIDelegate>{
 
 }
@@ -26,5 +27,6 @@
 
 - (IBAction)togglePlaybackState:(UIButton *)sender;
 - (IBAction)nextTrack:(UIButton *)sender;
-
+-(IBAction)refreshPlaylistbtn:(id)sender;
+-(void)handleTap:(UITapGestureRecognizer *)sender;
 @end

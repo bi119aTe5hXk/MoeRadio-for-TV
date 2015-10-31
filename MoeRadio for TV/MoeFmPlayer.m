@@ -110,10 +110,17 @@
 	
 	[self.delegate player:self stateChangesTo:[self.streamer state]];
 	
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    
 	if ([self.streamer isPlaying]){
         if (debugmode == YES) {
             NSLog(@"Streamer is playing");
         }
+        
+        
         
         [self.streamer setMeteringEnabled:YES];
 		[self toggleTimers:YES];

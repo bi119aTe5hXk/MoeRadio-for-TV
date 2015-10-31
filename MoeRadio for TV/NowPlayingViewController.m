@@ -61,15 +61,13 @@ typedef enum {
         self.player = [[MoeFmPlayer alloc] initWithDelegate:self];
     }
     
+    //recive message from other view
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveChangeSongNumberNotification:)
                                                  name:@"changeSongNumberNotification"
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveRefrashPlayListNotification:)
-                                                 name:@"RefrashPlayListNotification"
-                                               object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivePlayBackControlNotification:)
                                                  name:@"PlayBackControlNotification"
@@ -79,52 +77,99 @@ typedef enum {
     tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
     [self.view addGestureRecognizer:tabgr];
     
-    // Allow application to recieve remote control
-    UIApplication *application = [UIApplication sharedApplication];
-    if([application respondsToSelector:@selector(beginReceivingRemoteControlEvents)])
-        [application beginReceivingRemoteControlEvents];
-    [self becomeFirstResponder]; // this enables listening for events
+//    // Allow application to recieve remote control
+//    UIApplication *application = [UIApplication sharedApplication];
+//    if([application respondsToSelector:@selector(beginReceivingRemoteControlEvents)])
+//        [application beginReceivingRemoteControlEvents];
+//    [self becomeFirstResponder]; // this enables listening for events
     
+    
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+    [commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        // Begin playing the current track.
+        [self startOrPause];
+    }];
+    
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
 
 
 }
-/* The iPod controls will send these events when the app is in the background */
-- (void)remoteControlReceivedWithEvent:(UIEvent *)event
-{
-    switch (event.subtype) {
-        case UIEventSubtypeRemoteControlTogglePlayPause:
-            [self startOrPause];
-            break;
-        case UIEventSubtypeRemoteControlPlay:
-            [self start];
-            break;
-        case UIEventSubtypeRemoteControlPause:
-            [self pause];
-            break;
-        case UIEventSubtypeRemoteControlStop:
-            [self stop];
-            break;
-        case UIEventSubtypeRemoteControlNextTrack:
-            [self next];
-            break;
-        case UIEventSubtypeRemoteControlPreviousTrack:
-            [self previous];
-            break;
-        default:
-            break;
-    }
-}
+
+///* The iPod controls will send these events when the app is in the background */
+//- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+//{
+//    NSLog(@"button pressed:remoteControlReceivedWithEvent");
+//    switch (event.subtype) {
+//        case UIEventSubtypeRemoteControlTogglePlayPause:
+//            [self startOrPause];
+//            break;
+//        case UIEventSubtypeRemoteControlPlay:
+//            [self start];
+//            break;
+//        case UIEventSubtypeRemoteControlPause:
+//            [self pause];
+//            break;
+//        case UIEventSubtypeRemoteControlStop:
+//            [self stop];
+//            break;
+//        case UIEventSubtypeRemoteControlNextTrack:
+//            [self next];
+//            break;
+//        case UIEventSubtypeRemoteControlPreviousTrack:
+//            [self previous];
+//            break;
+//        default:
+//            break;
+//    }
+//}
 -(void)receivePlayBackControlNotification:(NSNotification *)notify{
-    [self startOrPause];
+    //[self handleTap:[notify userInfo]];
 }
 -(void)handleTap:(UITapGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"button pressed");
+        NSLog(@"button pressed:UIGestureRecognizerStateBegan");
     } else if (sender.state == UIGestureRecognizerStateEnded) {
-        //NSLog(@"button released");
-        [self startOrPause];
+        NSLog(@"button released:UIGestureRecognizerStateEnded");
+        
+        switch (sender.state) {
+            case UIPressTypeSelect:
+                
+                break;
+                
+            case UIPressTypeUpArrow:
+                
+                break;
+                
+            case UIPressTypeDownArrow:
+                
+                break;
+                
+            case UIPressTypeLeftArrow:
+                [self previous];
+                break;
+                
+            case UIPressTypeRightArrow:
+                [self next];
+                break;
+                
+            case UIPressTypeMenu:
+                
+                break;
+                
+            case UIPressTypePlayPause:
+                [self startOrPause];
+                break;
+        }
+        
+        
+        
+        
+        
     }
+    
     
 }
 - (void) viewWillAppear:(BOOL)animated
@@ -209,6 +254,8 @@ typedef enum {
 {
     self.songArtworkImage.image = image;
     [self.songArtworkLoadingIndicator stopAnimating];
+    
+    
     
     
     
@@ -344,7 +391,16 @@ typedef enum {
 
 - (void)player:(MoeFmPlayer *)player stoppingWithError:(NSString *)error
 {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现错误" message:error preferredStyle:UIAlertControllerStyleAlert];
     
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //NSLog(@"closed");
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
@@ -386,7 +442,8 @@ typedef enum {
     [self stop];
     [self.player startTrack:songnum];
 }
--(void)receiveRefrashPlayListNotification:(NSNotification *) notification{
+
+-(void)refreshPlaylist{
     [self resetMetadataView];
     [self stop];
     
@@ -409,8 +466,11 @@ typedef enum {
     if(!self.player){
         self.player = [[MoeFmPlayer alloc] initWithDelegate:self];
     }
-
+    
     [self next];
+}
+-(IBAction)refreshPlaylistbtn:(id)sender{
+    [self refreshPlaylist];
 }
 
 -(NSString *)htmlEntityDecode:(NSString *)string

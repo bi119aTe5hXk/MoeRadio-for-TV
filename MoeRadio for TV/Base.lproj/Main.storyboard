@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9052" systemVersion="15B22c" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="8cw-Xq-yBz">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15C27e" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="8cw-Xq-yBz">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Now Playing View Controller-->
@@ -24,15 +24,15 @@
                                 <rect key="frame" x="257" y="284" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzf-MV-KnX">
-                                <rect key="frame" x="496" y="296" width="769" height="183"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzf-MV-KnX">
+                                <rect key="frame" x="496" y="296" width="769" height="207"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIz-Ln-m2c">
-                                <rect key="frame" x="302" y="750" width="213" height="239"/>
+                                <rect key="frame" x="505" y="906" width="213" height="83"/>
                                 <animations/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="播放"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQe-rd-Swg">
-                                <rect key="frame" x="590" y="750" width="279" height="236"/>
+                                <rect key="frame" x="856" y="906" width="279" height="83"/>
                                 <animations/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="下一曲"/>
@@ -54,9 +54,18 @@
                                 <animations/>
                             </progressView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-Hv-0gu">
-                                <rect key="frame" x="398" y="872" width="20" height="20"/>
+                                <rect key="frame" x="601" y="938" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p21-cH-Jhc">
+                                <rect key="frame" x="58" y="906" width="352" height="83"/>
+                                <animations/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="刷新播放列表"/>
+                                <connections>
+                                    <action selector="refreshPlaylistbtn:" destination="8pB-B7-b3V" eventType="primaryActionTriggered" id="FJa-kw-kKu"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkE-zp-NNx">
                                 <rect key="frame" x="496" y="99" width="769" height="164"/>
                                 <animations/>
@@ -91,15 +100,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="vJn-YZ-YTb" detailTextLabel="5st-6j-4Ri" style="IBUITableViewCellStyleSubtitle" id="lwS-Fa-thN">
-                                <rect key="frame" x="0.0" y="199" width="594" height="200"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="vJn-YZ-YTb" detailTextLabel="5st-6j-4Ri" style="IBUITableViewCellStyleSubtitle" id="lwS-Fa-thN">
+                                <rect key="frame" x="0.0" y="54" width="634" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lwS-Fa-thN" id="yQ2-UP-0FU">
                                     <rect key="frame" x="0.0" y="0.0" width="618" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vJn-YZ-YTb">
-                                            <rect key="frame" x="20" y="60" width="72" height="45.5"/>
+                                            <rect key="frame" x="20" y="60" width="72" height="46"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="38"/>
@@ -107,7 +116,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5st-6j-4Ri">
-                                            <rect key="frame" x="20" y="105.5" width="99" height="35"/>
+                                            <rect key="frame" x="20" y="106" width="99" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
@@ -126,13 +135,8 @@
                             <outlet property="delegate" destination="Mqb-pJ-ZkN" id="5Pm-qI-4jh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="播放列表" id="Inq-1D-vrz">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="6HM-mt-8x0">
-                            <connections>
-                                <action selector="refrashlist:" destination="Mqb-pJ-ZkN" id="FZB-9Y-RYV"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="播放列表" id="Inq-1D-vrz"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ca4-Sy-wQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

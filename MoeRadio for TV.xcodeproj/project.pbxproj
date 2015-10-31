@@ -20,6 +20,7 @@
 		4711A6E81BB7DEAA006B6B30 /* NowPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6E71BB7DEAA006B6B30 /* NowPlayingViewController.m */; };
 		4711A6EC1BB7EA27006B6B30 /* PlayListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */; };
 		4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EE1BB7F650006B6B30 /* SplitViewController.m */; };
+		4721561C1BE4B5B700B6D337 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4721561B1BE4B5B700B6D337 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListViewController.m; sourceTree = "<group>"; };
 		4711A6ED1BB7F650006B6B30 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		4711A6EE1BB7F650006B6B30 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
+		4721561B1BE4B5B700B6D337 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4721561C1BE4B5B700B6D337 /* AVFoundation.framework in Frameworks */,
 				4711A6E41BB7DB84006B6B30 /* Foundation.framework in Frameworks */,
 				4711A6E21BB7DB73006B6B30 /* UIKit.framework in Frameworks */,
 			);
@@ -66,6 +69,7 @@
 		4711A6AE1BB7D697006B6B30 = {
 			isa = PBXGroup;
 			children = (
+				4721561B1BE4B5B700B6D337 /* AVFoundation.framework */,
 				4711A6E31BB7DB84006B6B30 /* Foundation.framework */,
 				4711A6E11BB7DB73006B6B30 /* UIKit.framework */,
 				4711A6B91BB7D698006B6B30 /* MoeRadio for TV */,
@@ -157,6 +161,7 @@
 				TargetAttributes = {
 					4711A6B61BB7D698006B6B30 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = HR66SGQEZ4;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.appletvos = {
 								enabled = 1;
@@ -311,14 +316,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Huang Xingkai (HR66SGQEZ4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Huang Xingkai (ZSK3Q7V672)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "MoeRadio for TV/PrefixHeader.pch";
 				INFOPLIST_FILE = "MoeRadio for TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HTandL.MoeRadioTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c65f2bda-286a-4c0e-a493-3910731bbf9c";
+				PROVISIONING_PROFILE = "0044e60c-d1be-4aa5-807c-ad52ad16301f";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -335,6 +341,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.HTandL.MoeRadioTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c65f2bda-286a-4c0e-a493-3910731bbf9c";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

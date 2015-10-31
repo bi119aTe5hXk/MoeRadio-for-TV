@@ -14,7 +14,7 @@
     NSArray *playlist1;
 }
 
--(IBAction)refrashlist:(id)sender;
+
 - (void)initPlaylist:(NSArray *)playlist;
 
 @end

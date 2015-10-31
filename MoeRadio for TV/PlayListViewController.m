@@ -18,6 +18,7 @@
     
     // Uncomment the following line to preserve selection between presentations.
      //self.clearsSelectionOnViewWillAppear = YES;
+    self.navigationController.navigationBar.hidden = YES;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -51,6 +52,7 @@
                                                             object:self];
     }
     
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     //playlist1 = [NSArray new];
@@ -76,6 +78,8 @@
     [self.tableView reloadData];
     //NSLog(@"PlayListList:%@",playlist1);
     //[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
     
 }
 
@@ -95,7 +99,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of rows
     
-    return [playlist1 count]+1;
+    return [playlist1 count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,27 +110,22 @@
     //        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     //    }
     
-    if (indexPath.row == [playlist1 count]) {
-        cell.textLabel.text = @"                刷新列表";//OKay, I am just lazy.
-        cell.detailTextLabel.text = @"";
-    }else{
-        NSArray *arr = [playlist1 objectAtIndex:indexPath.row];
-        
-        // Update Song Title
-        cell.textLabel.text = [self htmlEntityDecode:[arr valueForKey:@"sub_title"]];
-        
-        // Update Artist
-        NSString *artist = [arr valueForKey:@"artist"];
-        if([artist length] == 0) {
-            artist = @"未知艺术家";
-        }
-        // Update Album
-        NSString *album = [arr valueForKey:@"wiki_title"];
-        if([album length] == 0) {
-            album = @"未知专辑";
-        }
-        cell.detailTextLabel.text = [self htmlEntityDecode:[NSString stringWithFormat:@"%@ / %@", artist, album] ];
+    NSArray *arr = [playlist1 objectAtIndex:indexPath.row];
+    
+    // Update Song Title
+    cell.textLabel.text = [self htmlEntityDecode:[arr valueForKey:@"sub_title"]];
+    
+    // Update Artist
+    NSString *artist = [arr valueForKey:@"artist"];
+    if([artist length] == 0) {
+        artist = @"未知艺术家";
     }
+    // Update Album
+    NSString *album = [arr valueForKey:@"wiki_title"];
+    if([album length] == 0) {
+        album = @"未知专辑";
+    }
+    cell.detailTextLabel.text = [self htmlEntityDecode:[NSString stringWithFormat:@"%@ / %@", artist, album] ];
     
     
     
@@ -137,27 +136,18 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == [playlist1 count]) {
-        [self refrashlist:nil];
-    }else{
-        NSInteger songnum = indexPath.row;
-        
-        NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:songnum] forKey:@"songnum"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSongNumberNotification"
-                                                            object:self
-                                                          userInfo:dic];
-
-    }
+    NSInteger songnum = indexPath.row;
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:songnum] forKey:@"songnum"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSongNumberNotification"
+                                                        object:self
+                                                      userInfo:dic];
     
 }
 - (BOOL)tableView:(UITableView *)tableView canFocusRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
--(IBAction)refrashlist:(id)sender{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefrashPlayListNotification"
-                                                        object:self];
-    
-}
+
 
 -(NSString *)htmlEntityDecode:(NSString *)string
 {
