@@ -138,6 +138,9 @@ typedef enum {
 {
     [super viewDidAppear:animated];
     
+    
+    
+    //play at start
     [self start];
     
     [self becomeFirstResponder];
