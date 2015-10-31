@@ -72,11 +72,11 @@ typedef enum {
                                                object:nil];
     
     
-//    // Allow application to recieve remote control
-//    UIApplication *application = [UIApplication sharedApplication];
-//    if([application respondsToSelector:@selector(beginReceivingRemoteControlEvents)])
-//        [application beginReceivingRemoteControlEvents];
-//    [self becomeFirstResponder]; // this enables listening for events
+    // Allow application to recieve remote control
+    UIApplication *application = [UIApplication sharedApplication];
+    if([application respondsToSelector:@selector(beginReceivingRemoteControlEvents)])
+        [application beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder]; // this enables listening for events
     
     UITapGestureRecognizer *selectButtonGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     selectButtonGesture.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
@@ -126,7 +126,35 @@ typedef enum {
     }
     
 }
-
+/* The iPod controls will send these events when the app is in the background */
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
+    if (debugmode == YES) {
+        NSLog(@"remoteControlReceived");
+    }
+    switch (event.subtype) {
+        case UIEventSubtypeRemoteControlTogglePlayPause:
+            [self startOrPause];
+            break;
+        case UIEventSubtypeRemoteControlPlay:
+            [self startOrPause];
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            [self startOrPause];
+            break;
+        case UIEventSubtypeRemoteControlStop:
+            [self startOrPause];
+            break;
+        case UIEventSubtypeRemoteControlNextTrack:
+            [self next];
+            break;
+        case UIEventSubtypeRemoteControlPreviousTrack:
+            [self previous];
+            break;
+        default:
+            break;
+    }
+}
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

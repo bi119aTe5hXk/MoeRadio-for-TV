@@ -154,19 +154,27 @@ typedef enum
         
 		if(json == nil){
 			// TODO
-			NSLog(@"Json data is nil");
+            NSLog(@"Json data is nil");if([self.delegate respondsToSelector:@selector(api:requestFailedWithError:)]){
+                [self.delegate api:self requestFailedWithError:error];
+            }
 		}
 		
 		NSDictionary * response = [json objectForKey:@"response"];
 		if(response == nil){
 			// TODO
 			NSLog(@"Response data is nil");
+            if([self.delegate respondsToSelector:@selector(api:requestFailedWithError:)]){
+                [self.delegate api:self requestFailedWithError:error];
+            }
 		}
 		
 		NSArray* playlist = [response objectForKey:@"playlist"];
 		if(playlist == nil){
 			// TODO
 			NSLog(@"Playlist data is nil");
+            if([self.delegate respondsToSelector:@selector(api:requestFailedWithError:)]){
+                [self.delegate api:self requestFailedWithError:error];
+            }
 		}
 		
 		if([self.delegate respondsToSelector:@selector(api:readyWithPlaylist:)]){
@@ -193,12 +201,18 @@ typedef enum
 		if(json == nil){
 			// TODO
 			NSLog(@"Json data is nil");
+            if([self.delegate respondsToSelector:@selector(api:requestFailedWithError:)]){
+                [self.delegate api:self requestFailedWithError:error];
+            }
 		}
 		
 		NSDictionary * response = [json objectForKey:@"response"];
 		if(response == nil){
 			// TODO
 			NSLog(@"Response data is nil");
+            if([self.delegate respondsToSelector:@selector(api:requestFailedWithError:)]){
+                [self.delegate api:self requestFailedWithError:error];
+            }
 		}
         if([self.delegate respondsToSelector:@selector(api:readyWithJson:)]){
 			[self.delegate api:self readyWithJson:response];
