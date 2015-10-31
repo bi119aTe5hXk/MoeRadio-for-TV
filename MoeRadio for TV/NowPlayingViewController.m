@@ -67,15 +67,11 @@ typedef enum {
                                                  name:@"changeSongNumberNotification"
                                                object:nil];
     
+
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivePlayBackControlNotification:)
-                                                 name:@"PlayBackControlNotification"
-                                               object:nil];
-    
-    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
-    [self.view addGestureRecognizer:tabgr];
+//    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+//    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
+//    [self.view addGestureRecognizer:tabgr];
     
 //    // Allow application to recieve remote control
 //    UIApplication *application = [UIApplication sharedApplication];
@@ -83,12 +79,11 @@ typedef enum {
 //        [application beginReceivingRemoteControlEvents];
 //    [self becomeFirstResponder]; // this enables listening for events
     
+    UITapGestureRecognizer *selectButtonGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    selectButtonGesture.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
+    [self.view addGestureRecognizer:selectButtonGesture];
     
-    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
-    [commandCenter.playCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-        // Begin playing the current track.
-        [self startOrPause];
-    }];
+    
     
     AVAudioSession *session = [AVAudioSession sharedInstance];
     [session setCategory:AVAudioSessionCategoryPlayback error:nil];
@@ -96,82 +91,40 @@ typedef enum {
 
 
 }
-
-///* The iPod controls will send these events when the app is in the background */
-//- (void)remoteControlReceivedWithEvent:(UIEvent *)event
-//{
-//    NSLog(@"button pressed:remoteControlReceivedWithEvent");
-//    switch (event.subtype) {
-//        case UIEventSubtypeRemoteControlTogglePlayPause:
-//            [self startOrPause];
-//            break;
-//        case UIEventSubtypeRemoteControlPlay:
-//            [self start];
-//            break;
-//        case UIEventSubtypeRemoteControlPause:
-//            [self pause];
-//            break;
-//        case UIEventSubtypeRemoteControlStop:
-//            [self stop];
-//            break;
-//        case UIEventSubtypeRemoteControlNextTrack:
-//            [self next];
-//            break;
-//        case UIEventSubtypeRemoteControlPreviousTrack:
-//            [self previous];
-//            break;
-//        default:
-//            break;
-//    }
-//}
--(void)receivePlayBackControlNotification:(NSNotification *)notify{
-    //[self handleTap:[notify userInfo]];
-}
 -(void)handleTap:(UITapGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"button pressed:UIGestureRecognizerStateBegan");
-    } else if (sender.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"button released:UIGestureRecognizerStateEnded");
-        
-        switch (sender.state) {
-            case UIPressTypeSelect:
-                
-                break;
-                
-            case UIPressTypeUpArrow:
-                
-                break;
-                
-            case UIPressTypeDownArrow:
-                
-                break;
-                
-            case UIPressTypeLeftArrow:
-                [self previous];
-                break;
-                
-            case UIPressTypeRightArrow:
-                [self next];
-                break;
-                
-            case UIPressTypeMenu:
-                
-                break;
-                
-            case UIPressTypePlayPause:
-                [self startOrPause];
-                break;
+    if (debugmode == YES) {
+        if (sender.state == UIGestureRecognizerStateBegan) {
+            NSLog(@"button pressed");
+        } else if (sender.state == UIGestureRecognizerStateEnded) {
+            NSLog(@"button released");
         }
-        
-        
-        
-        
-        
     }
     
     
 }
+- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIEvent *)event {
+    
+    for (UIPress *item in presses)
+    {
+        if (debugmode == YES) {
+            
+            NSLog(@"item = %@", item);
+        }
+        
+        switch (item.type) {
+            case UIPressTypePlayPause:
+                [self startOrPause];
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    }
+    
+}
+
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

@@ -35,25 +35,25 @@
                                              selector:@selector(receiveNowPlayingNumNotification:)
                                                  name:@"NowPlayingNumNotification"
                                                object:nil];
-    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
-    [self.view addGestureRecognizer:tabgr];
+//    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+//    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
+//    [self.view addGestureRecognizer:tabgr];
    
     
 }
--(void)handleTap:(UITapGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"button pressed");
-    } else if (sender.state == UIGestureRecognizerStateEnded) {
-        //NSLog(@"button released");
-        //[self togglePlaybackState:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayBackControlNotification"
-                                                            object:self];
-    }
-    
-    
-}
+//-(void)handleTap:(UITapGestureRecognizer *)sender {
+//    
+//    if (sender.state == UIGestureRecognizerStateBegan) {
+//        NSLog(@"button pressed");
+//    } else if (sender.state == UIGestureRecognizerStateEnded) {
+//        //NSLog(@"button released");
+//        //[self togglePlaybackState:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayBackControlNotification"
+//                                                            object:self];
+//    }
+//    
+//    
+//}
 -(void)viewWillAppear:(BOOL)animated{
     //playlist1 = [NSArray new];
     

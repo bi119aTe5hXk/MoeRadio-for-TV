@@ -28,5 +28,5 @@
 - (IBAction)togglePlaybackState:(UIButton *)sender;
 - (IBAction)nextTrack:(UIButton *)sender;
 -(IBAction)refreshPlaylistbtn:(id)sender;
--(void)handleTap:(UITapGestureRecognizer *)sender;
+//-(void)handleTap:(UITapGestureRecognizer *)sender;
 @end
