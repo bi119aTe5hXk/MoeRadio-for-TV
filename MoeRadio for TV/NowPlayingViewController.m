@@ -66,12 +66,11 @@ typedef enum {
                                              selector:@selector(receiveChangeSongNumberNotification:)
                                                  name:@"changeSongNumberNotification"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivePlayControlNotification:)
+                                                 name:@"PlayControlNotification"
+                                               object:nil];
     
-
-    
-//    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-//    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
-//    [self.view addGestureRecognizer:tabgr];
     
 //    // Allow application to recieve remote control
 //    UIApplication *application = [UIApplication sharedApplication];
@@ -90,6 +89,9 @@ typedef enum {
     [session setActive:YES error:nil];
 
 
+}
+-(void)receivePlayControlNotification:(NSNotification *)notify{
+    [self startOrPause];
 }
 -(void)handleTap:(UITapGestureRecognizer *)sender {
     if (debugmode == YES) {

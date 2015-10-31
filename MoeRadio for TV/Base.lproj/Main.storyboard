@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15C27e" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="8cw-Xq-yBz">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15C27e" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="bOG-Bm-cxZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
@@ -89,9 +89,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yzJ-Lr-STu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-116.5" y="-347"/>
+            <point key="canvasLocation" x="-122.5" y="-349"/>
         </scene>
-        <!--播放列表-->
+        <!--Play List View Controller-->
         <scene sceneID="JpC-Ie-aou">
             <objects>
                 <tableViewController storyboardIdentifier="PlayListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="Mqb-pJ-ZkN" customClass="PlayListViewController" sceneMemberID="viewController">
@@ -101,7 +101,7 @@
                         <animations/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="vJn-YZ-YTb" detailTextLabel="5st-6j-4Ri" style="IBUITableViewCellStyleSubtitle" id="lwS-Fa-thN">
-                                <rect key="frame" x="0.0" y="54" width="634" height="200"/>
+                                <rect key="frame" x="0.0" y="199" width="634" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lwS-Fa-thN" id="yQ2-UP-0FU">
                                     <rect key="frame" x="0.0" y="0.0" width="618" height="200"/>
@@ -135,8 +135,7 @@
                             <outlet property="delegate" destination="Mqb-pJ-ZkN" id="5Pm-qI-4jh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="播放列表" id="Inq-1D-vrz"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" id="Inq-1D-vrz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ca4-Sy-wQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -164,10 +163,11 @@
             </objects>
             <point key="canvasLocation" x="-442" y="-1488"/>
         </scene>
-        <!--Split View Controller-->
+        <!--正在播放-->
         <scene sceneID="kDy-Fg-cab">
             <objects>
-                <splitViewController storyboardIdentifier="SplitViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8cw-Xq-yBz" customClass="SplitViewController" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="SplitViewController" title="正在播放" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8cw-Xq-yBz" customClass="SplitViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="正在播放" id="Zfc-i4-Dhc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <segue destination="1St-jq-qDP" kind="relationship" relationship="masterViewController" id="pX7-uS-upx"/>
@@ -176,7 +176,84 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eu9-Ix-fgj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1939" y="-917"/>
+            <point key="canvasLocation" x="-1925" y="-921"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="UJ7-bc-NMp">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N6X-aq-V3i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tabBarController id="bOG-Bm-cxZ" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="1bj-l8-iIH">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="8cw-Xq-yBz" kind="relationship" relationship="viewControllers" id="MP9-PP-LiP"/>
+                        <segue destination="Yg4-Gc-Blq" kind="relationship" relationship="viewControllers" id="2od-CQ-nNp"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="-4161" y="277"/>
+        </scene>
+        <!--搜索-->
+        <scene sceneID="mhz-Vk-mY8">
+            <objects>
+                <collectionViewController storyboardIdentifier="SearchCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yg4-Gc-Blq" customClass="SearchCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="T1z-M0-Gec">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IIu-rm-hbd">
+                            <size key="itemSize" width="340" height="426"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="sb8-Qh-GAn">
+                                <rect key="frame" x="0.0" y="140" width="340" height="426"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="340" height="426"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNe-zU-91E">
+                                            <rect key="frame" x="0.0" y="0.0" width="340" height="340"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpB-0y-RdU">
+                                            <rect key="frame" x="26" y="355" width="288" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ik1-Eg-EWt">
+                                            <rect key="frame" x="26" y="385" width="288" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Yg4-Gc-Blq" id="Vxq-eV-Nst"/>
+                            <outlet property="delegate" destination="Yg4-Gc-Blq" id="6Zh-LZ-DbP"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="搜索" id="zge-Ro-xfX"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="50M-Xx-Lft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1919" y="1227"/>
         </scene>
     </scenes>
 </document>

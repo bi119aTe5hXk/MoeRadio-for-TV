@@ -18,7 +18,7 @@
     
     // Uncomment the following line to preserve selection between presentations.
      //self.clearsSelectionOnViewWillAppear = YES;
-    self.navigationController.navigationBar.hidden = YES;
+    //self.navigationController.navigationBar.hidden = YES;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -35,25 +35,49 @@
                                              selector:@selector(receiveNowPlayingNumNotification:)
                                                  name:@"NowPlayingNumNotification"
                                                object:nil];
-//    UITapGestureRecognizer *tabgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-//    tabgr.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
-//    [self.view addGestureRecognizer:tabgr];
-   
+
+    UITapGestureRecognizer *selectButtonGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    selectButtonGesture.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
+    [self.view addGestureRecognizer:selectButtonGesture];
+
     
 }
-//-(void)handleTap:(UITapGestureRecognizer *)sender {
-//    
-//    if (sender.state == UIGestureRecognizerStateBegan) {
-//        NSLog(@"button pressed");
-//    } else if (sender.state == UIGestureRecognizerStateEnded) {
-//        //NSLog(@"button released");
-//        //[self togglePlaybackState:nil];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayBackControlNotification"
-//                                                            object:self];
-//    }
-//    
-//    
-//}
+-(void)handleTap:(UITapGestureRecognizer *)sender {
+    if (debugmode == YES) {
+        if (sender.state == UIGestureRecognizerStateBegan) {
+            NSLog(@"button pressed");
+        } else if (sender.state == UIGestureRecognizerStateEnded) {
+            NSLog(@"button released");
+        }
+    }
+    
+    
+}
+- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIEvent *)event {
+    
+    for (UIPress *item in presses)
+    {
+        if (debugmode == YES) {
+            
+            NSLog(@"item = %@", item);
+        }
+        
+        switch (item.type) {
+            case UIPressTypePlayPause:
+                //[self startOrPause];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayControlNotification"
+                                                                    object:self
+                                                                  userInfo:nil];
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    }
+    
+}
 -(void)viewWillAppear:(BOOL)animated{
     //playlist1 = [NSArray new];
     

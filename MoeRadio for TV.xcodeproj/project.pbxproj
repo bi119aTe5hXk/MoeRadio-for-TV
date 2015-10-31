@@ -21,6 +21,7 @@
 		4711A6EC1BB7EA27006B6B30 /* PlayListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */; };
 		4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EE1BB7F650006B6B30 /* SplitViewController.m */; };
 		4721561C1BE4B5B700B6D337 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4721561B1BE4B5B700B6D337 /* AVFoundation.framework */; };
+		4721561F1BE4F8D500B6D337 /* SearchCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4721561E1BE4F8D500B6D337 /* SearchCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		4711A6ED1BB7F650006B6B30 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		4711A6EE1BB7F650006B6B30 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		4721561B1BE4B5B700B6D337 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4721561D1BE4F8D500B6D337 /* SearchCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionViewController.h; sourceTree = "<group>"; };
+		4721561E1BE4F8D500B6D337 /* SearchCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,8 @@
 				4711A6D11BB7D894006B6B30 /* MoeFmPlayer.m */,
 				4711A6EA1BB7EA27006B6B30 /* PlayListViewController.h */,
 				4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */,
+				4721561D1BE4F8D500B6D337 /* SearchCollectionViewController.h */,
+				4721561E1BE4F8D500B6D337 /* SearchCollectionViewController.m */,
 				4711A6E91BB7DF1B006B6B30 /* AudioStreamer */,
 				4711A6C61BB7D698006B6B30 /* Assets.xcassets */,
 				4711A6C81BB7D698006B6B30 /* Info.plist */,
@@ -213,6 +218,7 @@
 				4711A6D31BB7D894006B6B30 /* MoeFmPlayer.m in Sources */,
 				4711A6BC1BB7D698006B6B30 /* main.m in Sources */,
 				4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */,
+				4721561F1BE4F8D500B6D337 /* SearchCollectionViewController.m in Sources */,
 				4711A6D21BB7D894006B6B30 /* MoeFmAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
