@@ -79,7 +79,7 @@ typedef enum {
     [self becomeFirstResponder]; // this enables listening for events
     
     UITapGestureRecognizer *selectButtonGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    selectButtonGesture.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
+    selectButtonGesture.allowedPressTypes = @[@(UIPressTypePlayPause),@(UIPressTypeMenu)];
     [self.view addGestureRecognizer:selectButtonGesture];
     
     
@@ -104,7 +104,8 @@ typedef enum {
     
     
 }
-- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIEvent *)event {
+
+- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(nullable UIPressesEvent *)event {
     
     for (UIPress *item in presses)
     {
@@ -117,12 +118,18 @@ typedef enum {
             case UIPressTypePlayPause:
                 [self startOrPause];
                 break;
+            case UIPressTypeMenu:
+                return [super pressesEnded:presses withEvent:event];
+                break;
                 
             default:
                 break;
         }
         
         
+    }
+    if (((UIPress *)[presses anyObject]).type == UIPressTypeMenu) {
+        return [super pressesEnded:presses withEvent:event];
     }
     
 }
@@ -209,10 +216,7 @@ typedef enum {
     
     self.songInfoLabel.text = [self htmlEntityDecode:[NSString stringWithFormat:@"%@ / %@", artist, album]];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
-        // Post to NowPlayingInfoCenter
-        [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
-    }
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
     
     // Update image async
     NSString *coverSize = nil;

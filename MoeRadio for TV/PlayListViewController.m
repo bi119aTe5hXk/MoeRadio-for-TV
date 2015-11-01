@@ -53,7 +53,7 @@
     
     
 }
-- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(UIEvent *)event {
+- (void)pressesBegan:(NSSet<UIPress *> *)presses withEvent:(nullable UIPressesEvent *)event {
     
     for (UIPress *item in presses)
     {
@@ -69,12 +69,17 @@
                                                                     object:self
                                                                   userInfo:nil];
                 break;
-                
+            case UIPressTypeMenu:
+                return [super pressesEnded:presses withEvent:event];
+                break;
             default:
                 break;
         }
         
         
+    }
+    if (((UIPress *)[presses anyObject]).type == UIPressTypeMenu) {
+        return [super pressesEnded:presses withEvent:event];
     }
     
 }
