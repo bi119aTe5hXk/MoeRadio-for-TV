@@ -100,8 +100,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="vJn-YZ-YTb" detailTextLabel="5st-6j-4Ri" style="IBUITableViewCellStyleSubtitle" id="lwS-Fa-thN">
-                                <rect key="frame" x="0.0" y="199" width="594" height="200"/>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="vJn-YZ-YTb" detailTextLabel="5st-6j-4Ri" style="IBUITableViewCellStyleSubtitle" id="lwS-Fa-thN">
+                                <rect key="frame" x="0.0" y="199" width="634" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lwS-Fa-thN" id="yQ2-UP-0FU">
                                     <rect key="frame" x="0.0" y="0.0" width="618" height="200"/>
@@ -145,7 +145,7 @@
         <scene sceneID="i7p-3n-OJr">
             <objects>
                 <navigationController id="1St-jq-qDP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HkW-nc-nlZ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HkW-nc-nlZ">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>

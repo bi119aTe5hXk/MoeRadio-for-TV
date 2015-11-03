@@ -72,25 +72,32 @@ typedef enum {
                                                object:nil];
     
     
-    // Allow application to recieve remote control
-    UIApplication *application = [UIApplication sharedApplication];
-    if([application respondsToSelector:@selector(beginReceivingRemoteControlEvents)])
-        [application beginReceivingRemoteControlEvents];
-    [self becomeFirstResponder]; // this enables listening for events
+    
+    
+    
     
     UITapGestureRecognizer *selectButtonGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     selectButtonGesture.allowedPressTypes = @[@(UIPressTypePlayPause),@(UIPressTypeMenu)];
     [self.view addGestureRecognizer:selectButtonGesture];
     
     
+    MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
     
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-    [session setActive:YES error:nil];
+    [commandCenter.togglePlayPauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
+        NSLog(@"toggle button pressed");
+        [self startOrPause];
+        return MPRemoteCommandHandlerStatusSuccess;
+    }];
+    [commandCenter.togglePlayPauseCommand addTarget:self action:@selector(startOrPause)];//this is shit
+    
 
 
 }
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
 -(void)receivePlayControlNotification:(NSNotification *)notify{
+    //control form list
     [self startOrPause];
 }
 -(void)handleTap:(UITapGestureRecognizer *)sender {
@@ -111,7 +118,7 @@ typedef enum {
     {
         if (debugmode == YES) {
             
-            NSLog(@"item = %@", item);
+            NSLog(@"pressesBegan,item = %@", item);
         }
         
         switch (item.type) {
@@ -133,11 +140,17 @@ typedef enum {
     }
     
 }
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(nullable UIEvent *)event{
+    if (motion == UIEventSubtypeMotionShake) {
+        [self refreshPlaylist];
+    }
+}
 /* The iPod controls will send these events when the app is in the background */
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event
 {
+    //[[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
     if (debugmode == YES) {
-        NSLog(@"remoteControlReceived");
+        NSLog(@"remoteControlReceived,type:%ld",(long)event.subtype);
     }
     switch (event.subtype) {
         case UIEventSubtypeRemoteControlTogglePlayPause:
@@ -158,14 +171,18 @@ typedef enum {
         case UIEventSubtypeRemoteControlPreviousTrack:
             [self previous];
             break;
+        
         default:
             break;
     }
+
 }
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    // Allow application to recieve remote control
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    //[self becomeFirstResponder]; // this enables listening for events
     [self resetMetadataView];
 }
 
@@ -180,9 +197,7 @@ typedef enum {
     
     [self becomeFirstResponder];
 }
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
