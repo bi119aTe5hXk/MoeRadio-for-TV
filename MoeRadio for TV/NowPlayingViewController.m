@@ -193,7 +193,7 @@ typedef enum {
     
     
     //play at start
-    [self start];
+    //[self start];
     
     [self becomeFirstResponder];
 }
@@ -299,6 +299,7 @@ typedef enum {
 }
 
 - (void)next{
+    [self.player stop];
     [self.player next];
 }
 
