@@ -30,24 +30,34 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     
     
     // Do any additional setup after loading the view.
+    if (self.searchtype.length == 0) {
+        //self.searchtype = @"SongSearch";
+    }
     
     moefmapi = [[MoeFmAPI alloc] initWithApiKey:MFCkey delegate:self];
     
     NSString *str = [NSString stringWithFormat:@"%@",self.keyword];
     NSLog(@"strrrr:%@",str);
-    [self startSeachWithKeyword:self.keyword];
+    [self startSeachWithKeyword:self.keyword WithType:self.searchtype];
     
     //[self.collectionView reloadData];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [moefmapi cancelRequest];
 }
--(void)startSeachWithKeyword:(NSString *)keyword{
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"nowtype:%@",self.searchtype);
+}
+-(void)startSeachWithKeyword:(NSString *)keyword WithType:(NSString *)type{
     if ([keyword length]>0) {
         page = 0;
         NSString *url = @"";
+        if ([type  isEqualToString: @"SongSearch"]) {
+            url = [searchsuburl stringByAppendingFormat:@"&sub_type=%@",@"song"];
+        }else{
+            url = [searchwikiurl stringByAppendingFormat:@"&wiki_type=%@",@"music"];
+        }
         
-        url = [searchsuburl stringByAppendingFormat:@"&sub_type=%@",@"song"];
         
         NSString *keywordEncoded = [keyword stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
         
@@ -56,6 +66,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         page++;
         url = [url stringByAppendingFormat:@"&page=%ld",page];
         [moefmapi requestJsonWithURL:url];
+        url = nil;
     }
 
 }
@@ -81,7 +92,12 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         NSLog(@"songlist:%@",songlist);
         [self.collectionView reloadData];
     }else{
-        songlist = [json valueForKey:@"subs"];
+        if ([self.searchtype isEqual:@"SongSearch"]) {
+            songlist = [json valueForKey:@"subs"];
+            
+        }else{
+            songlist = [json valueForKey:@"wikis"];
+        }
         NSLog(@"songlist:%@",songlist);
         [self.collectionView reloadData];
     }
@@ -109,11 +125,20 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     // Configure the cell
     
     
-    cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"]];
     
+    NSString *imageurl = @"";
+    if ([self.searchtype isEqual:@"SongSearch"]) {
+        cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"]];
+        imageurl = [[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"small"];
+    }else{
+        cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_title"]];
+        imageurl =[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_cover"] valueForKey:@"small"];
+    }
     
+        
+        
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"small"]]];
+        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageurl]];
         if (imgData) {
             UIImage *image = [UIImage imageWithData:imgData];
             if (image) {
@@ -133,8 +158,14 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 
 #pragma mark <UICollectionViewDelegate>
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *songid = [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_id"];
-    NSDictionary *dic = [NSDictionary dictionaryWithObject:songid forKey:@"sub_id"];
+    NSString *sid = @"";
+    if ([self.searchtype isEqual:@"SongSearch"]) {
+       sid = [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_id"];
+        
+    }else{
+        sid = [[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_id"];
+    }
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.searchtype,@"SearchType",sid,@"IDs", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayPSongNotification"
                                                         object:self
                                                       userInfo:dic];
@@ -168,11 +199,22 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 	
 }
 */
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y == scrollView.contentSize.height - scrollView.frame.size.height)
+    {
+        //LOAD MORE
+        // you can also add a isLoading bool value for better dealing :D
+        NSLog(@"should load more");
+    }
+}
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController{
     NSString *searchstr = searchController.searchBar.text;
     self.keyword = searchstr;
     NSLog(@"strr2:%@",searchstr);
-    [self startSeachWithKeyword:searchstr];
+    if (self.searchtype.length > 0 && searchstr.length > 0) {
+        [self startSeachWithKeyword:searchstr WithType:self.searchtype];
+    }
+    
 }
 -(NSString *)htmlEntityDecode:(NSString *)string{
     string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];

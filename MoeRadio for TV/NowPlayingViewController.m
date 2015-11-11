@@ -85,7 +85,7 @@ typedef enum {
     
     
     UITapGestureRecognizer *selectButtonGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    selectButtonGesture.allowedPressTypes = @[@(UIPressTypePlayPause),@(UIPressTypeMenu)];
+    selectButtonGesture.allowedPressTypes = @[@(UIPressTypePlayPause)];//,@(UIPressTypeMenu)];
     [self.view addGestureRecognizer:selectButtonGesture];
     
     
@@ -105,9 +105,15 @@ typedef enum {
     return YES;
 }
 -(void)receivePlayPSongNotification:(NSNotification *)notify{
-    NSString *song_id = [[[notify userInfo] valueForKey:@"sub_id"] stringValue];
-    songid = song_id;
-    playmode = @"searchplaysong";
+    if ([[[notify userInfo] valueForKey:@"SearchType"]isEqualToString:@"SongSearch"]) {
+        songid = [[[notify userInfo] valueForKey:@"IDs"] stringValue];
+        playmode = @"searchplaysong";
+    }else{
+        albumid = [[[notify userInfo] valueForKey:@"IDs"] stringValue];
+        playmode = @"searchplaymusic";
+    }
+    
+    
     [self refreshPlaylist];
 }
 -(void)receivePlayControlNotification:(NSNotification *)notify{
@@ -352,6 +358,8 @@ typedef enum {
     NSString *url = [playlisturl stringByAppendingFormat:@"&page=%ld",page];
     if ([playmode isEqualToString:@"searchplaysong"]){
         url = [url stringByAppendingFormat:@"&song=%@",songid];
+    }else if ([playmode isEqualToString:@"searchplaymusic"]){
+        url = [url stringByAppendingFormat:@"&music=%@",albumid];
     }
     
     BOOL status = [self.playlistAPI requestListenPlaylistWithURL:url];

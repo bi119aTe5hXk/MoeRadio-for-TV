@@ -16,6 +16,7 @@
     NSString *playmode;
     NSInteger page;
     NSString *songid;
+    NSString *albumid;
 }
 
 @property (assign, nonatomic) IBOutlet UILabel *songNameLabel;

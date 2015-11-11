@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    mode = @"";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,21 +34,30 @@
     // Pass the selected object to the new view controller.
 }
 */
--(IBAction)startSearch:(id)sender{
+
+-(IBAction)startSongSearch:(id)sender{
+    mode = @"SongSearch";
+    [self startSearch];
+}
+-(IBAction)startAlbumSearch:(id)sender{
+    mode = @"AlbumSearch";
+    [self startSearch];
+}
+-(void)startSearch{
+    
     if ([self.kwfield.text length] > 0) {
         SearchCollectionViewController *resultsController = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchCollectionViewController"];
         UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:resultsController];
         searchController.searchResultsUpdater = resultsController;
-        //searchController.delegate = resultsController;
         searchController.delegate = resultsController;
         searchController.searchBar.placeholder = @"请输入歌曲关键词";
         searchController.searchBar.text = self.kwfield.text;
         resultsController.keyword = self.kwfield.text;
+        resultsController.searchtype = mode;
         [self.view.window.rootViewController presentViewController:searchController animated:YES completion:^{
             NULL;
         }];
     }
-    
-}
 
+}
 @end

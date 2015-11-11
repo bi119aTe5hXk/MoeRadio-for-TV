@@ -93,19 +93,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXw-pE-bdq">
-                                <rect key="frame" x="845" y="546" width="232" height="86"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="开始搜索"/>
-                                <connections>
-                                    <action selector="startSearch:" destination="88l-SW-0hh" eventType="primaryActionTriggered" id="oP2-qh-gPx"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入歌曲关键词" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZWr-9W-bLF">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入关键词" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZWr-9W-bLF">
                                 <rect key="frame" x="496" y="345" width="931" height="46"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXw-pE-bdq">
+                                <rect key="frame" x="496" y="548" width="409" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="歌曲搜索"/>
+                                <connections>
+                                    <action selector="startSongSearch:" destination="88l-SW-0hh" eventType="primaryActionTriggered" id="6id-6A-Buj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-cL-u1X">
+                                <rect key="frame" x="1018" y="548" width="409" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="专辑搜索"/>
+                                <connections>
+                                    <action selector="startAlbumSearch:" destination="88l-SW-0hh" eventType="primaryActionTriggered" id="VRO-26-yXp"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <tabBarItem key="tabBarItem" title="搜索" id="gG4-6q-xcf"/>

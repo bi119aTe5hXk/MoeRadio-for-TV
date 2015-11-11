@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SearchCollectionViewController.h"
 @interface SearchInitViewController : UIViewController<UISearchControllerDelegate>{
-    
+    NSString *mode;
 }
 @property (nonatomic, strong) IBOutlet UITextField *kwfield;
--(IBAction)startSearch:(id)sender;
+-(IBAction)startSongSearch:(id)sender;
+-(IBAction)startAlbumSearch:(id)sender;
 @end

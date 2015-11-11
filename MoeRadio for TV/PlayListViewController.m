@@ -78,9 +78,9 @@
         
         
     }
-    if (((UIPress *)[presses anyObject]).type == UIPressTypeMenu) {
-        return [super pressesEnded:presses withEvent:event];
-    }
+//    if (((UIPress *)[presses anyObject]).type == UIPressTypeMenu) {
+//        return [super pressesEnded:presses withEvent:event];
+//    }
     
 }
 -(void)viewWillAppear:(BOOL)animated{
