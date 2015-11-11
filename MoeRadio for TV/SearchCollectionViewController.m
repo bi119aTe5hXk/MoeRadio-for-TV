@@ -39,6 +39,9 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     
     //[self.collectionView reloadData];
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [moefmapi cancelRequest];
+}
 -(void)startSeachWithKeyword:(NSString *)keyword{
     if ([keyword length]>0) {
         page = 0;
@@ -71,9 +74,18 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 }
 */
 -(void)api:(MoeFmAPI *)api readyWithJson:(NSDictionary *)json{
-    songlist = [json valueForKey:@"subs"];
-    NSLog(@"songlist:%@",songlist);
-    [self.collectionView reloadData];
+    
+    if ([[json valueForKey:@"information"] valueForKey:@"count"] == [NSNumber numberWithInteger:0]) {
+        NSLog(@"count0");
+        songlist = [NSArray new];
+        NSLog(@"songlist:%@",songlist);
+        [self.collectionView reloadData];
+    }else{
+        songlist = [json valueForKey:@"subs"];
+        NSLog(@"songlist:%@",songlist);
+        [self.collectionView reloadData];
+    }
+    
 }
 -(void)api:(MoeFmAPI *)api requestFailedWithError:(NSError *)error{
     NSLog(@"error:%@",error);
@@ -97,8 +109,24 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     // Configure the cell
     
     
-    cell.songtitle.text = [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"];
-    cell.songimage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"small"]]]];
+    cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"]];
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"small"]]];
+        if (imgData) {
+            UIImage *image = [UIImage imageWithData:imgData];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.songimage.image = image;
+                });
+            }
+        }
+    });
+
+    
+    
+    
     cell.songimage.adjustsImageWhenAncestorFocused = YES;
     return cell;
 }
@@ -146,5 +174,29 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     NSLog(@"strr2:%@",searchstr);
     [self startSeachWithKeyword:searchstr];
 }
-
+-(NSString *)htmlEntityDecode:(NSString *)string{
+    string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    string = [string stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
+    string = [string stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    string = [string stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    string = [string stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    string = [string stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+    
+    string = [string stringByReplacingOccurrencesOfString:@"&rarr;" withString:@"→"];
+    string = [string stringByReplacingOccurrencesOfString:@"&larr;" withString:@"←"];
+    string = [string stringByReplacingOccurrencesOfString:@"&darr;" withString:@"↓"];
+    string = [string stringByReplacingOccurrencesOfString:@"&uarr;" withString:@"↑"];
+    string = [string stringByReplacingOccurrencesOfString:@"&hellip;" withString:@"…"];
+    string = [string stringByReplacingOccurrencesOfString:@"&infin;" withString:@"∞"];
+    string = [string stringByReplacingOccurrencesOfString:@"&mu;" withString:@"μ"];
+    string = [string stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];
+    string = [string stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"“"];
+    string = [string stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"”"];
+    string = [string stringByReplacingOccurrencesOfString:@"&quot;" withString:@"“"];
+    string = [string stringByReplacingOccurrencesOfString:@"&middot;" withString:@"·"];
+    string = [string stringByReplacingOccurrencesOfString:@"&minus;" withString:@"−"];
+    string = [string stringByReplacingOccurrencesOfString:@"&times;" withString:@"×"];
+    string = [string stringByReplacingOccurrencesOfString:@"&rsquo;" withString:@"’"];
+    return string;
+}
 @end

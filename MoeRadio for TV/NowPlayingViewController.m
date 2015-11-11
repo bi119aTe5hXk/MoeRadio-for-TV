@@ -52,6 +52,7 @@ typedef enum {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // Create APIs
+    [self resetMetadataView];
     if(!self.playlistAPI){
         self.playlistAPI = [self createAPI];
     }
@@ -148,9 +149,9 @@ typedef enum {
         
         
     }
-    if (((UIPress *)[presses anyObject]).type == UIPressTypeMenu) {
-        return [super pressesEnded:presses withEvent:event];
-    }
+//    if (((UIPress *)[presses anyObject]).type == UIPressTypeMenu) {
+//        return [super pressesEnded:presses withEvent:event];
+//    }
     
 }
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(nullable UIEvent *)event{
@@ -197,7 +198,7 @@ typedef enum {
     // Allow application to recieve remote control
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     //[self becomeFirstResponder]; // this enables listening for events
-    [self resetMetadataView];
+    //[self resetMetadataView];
 }
 
 - (void) viewDidAppear:(BOOL)animated
