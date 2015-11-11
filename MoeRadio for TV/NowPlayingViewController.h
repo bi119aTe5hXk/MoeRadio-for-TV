@@ -13,7 +13,9 @@
 
 
 @interface NowPlayingViewController : UIViewController<MoeFmPlayerDelegate, MoeFmAPIDelegate>{
-
+    NSString *playmode;
+    NSInteger page;
+    NSString *songid;
 }
 
 @property (assign, nonatomic) IBOutlet UILabel *songNameLabel;

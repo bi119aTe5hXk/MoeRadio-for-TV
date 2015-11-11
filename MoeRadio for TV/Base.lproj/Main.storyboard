@@ -144,7 +144,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="small.png" translatesAutoresizingMaskIntoConstraints="NO" id="xxD-dp-Gta">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xxD-dp-Gta">
                                             <rect key="frame" x="8" y="8" width="278" height="278"/>
                                         </imageView>
                                     </subviews>
@@ -266,7 +266,4 @@
             <point key="canvasLocation" x="-4735" y="-207"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="small.png" width="1024" height="1309"/>
-    </resources>
 </document>

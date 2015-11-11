@@ -23,9 +23,11 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[SearchCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    //[self.collectionView registerClass:[SearchCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
+    self.collectionView.allowsSelection = YES;
+    
     
     // Do any additional setup after loading the view.
     
@@ -35,7 +37,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     NSLog(@"strrrr:%@",str);
     [self startSeachWithKeyword:self.keyword];
     
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
 }
 -(void)startSeachWithKeyword:(NSString *)keyword{
     if ([keyword length]>0) {
@@ -50,7 +52,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         url = [url stringByAppendingFormat:@"&keyword=%@",keywordEncoded];
         page++;
         url = [url stringByAppendingFormat:@"&page=%ld",page];
-        //[moefmapi requestJsonWithURL:url];
+        [moefmapi requestJsonWithURL:url];
     }
 
 }
@@ -86,7 +88,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 //#warning Incomplete implementation, return the number of items
-    return 20;//[songlist count];
+    return [songlist count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,27 +96,35 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     SearchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     // Configure the cell
     
-    //NSString *str = [NSString stringWithFormat:@"%@\n%@ / %@", [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"], [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_artist"], [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_album"]];
-    cell.songtitle.text = @"hey";
     
+    cell.songtitle.text = [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"];
+    cell.songimage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"small"]]]];
+    cell.songimage.adjustsImageWhenAncestorFocused = YES;
     return cell;
 }
 
 #pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *songid = [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_id"];
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:songid forKey:@"sub_id"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayPSongNotification"
+                                                        object:self
+                                                      userInfo:dic];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
+//// Uncomment this method to specify if the specified item should be highlighted during tracking
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+//	return YES;
+//}
+//
+//
+//
+//// Uncomment this method to specify if the specified item should be selected
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
+//}
+
 
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item

@@ -44,7 +44,10 @@ typedef enum {
 @synthesize imageAPI = _imageAPI;
 
 
-
+- (UIView *)preferredFocusedView
+{
+    return self.nextButton;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -60,7 +63,7 @@ typedef enum {
     if(!self.player){
         self.player = [[MoeFmPlayer alloc] initWithDelegate:self];
     }
-    
+    page=0;
     //recive message from other view
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveChangeSongNumberNotification:)
@@ -69,6 +72,10 @@ typedef enum {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivePlayControlNotification:)
                                                  name:@"PlayControlNotification"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivePlayPSongNotification:)
+                                                 name:@"PlayPSongNotification"
                                                object:nil];
     
     
@@ -95,6 +102,12 @@ typedef enum {
 }
 - (BOOL)canBecomeFirstResponder {
     return YES;
+}
+-(void)receivePlayPSongNotification:(NSNotification *)notify{
+    NSString *song_id = [[[notify userInfo] valueForKey:@"sub_id"] stringValue];
+    songid = song_id;
+    playmode = @"searchplaysong";
+    [self refreshPlaylist];
 }
 -(void)receivePlayControlNotification:(NSNotification *)notify{
     //control form list
@@ -142,6 +155,7 @@ typedef enum {
 }
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(nullable UIEvent *)event{
     if (motion == UIEventSubtypeMotionShake) {
+        playmode = @"";
         [self refreshPlaylist];
     }
 }
@@ -193,7 +207,7 @@ typedef enum {
     
     
     //play at start
-    //[self start];
+    [self start];
     
     [self becomeFirstResponder];
 }
@@ -333,8 +347,13 @@ typedef enum {
         NSLog(@"Playlist API is busy, try again later");
         return;
     }
+    ++page;
+    NSString *url = [playlisturl stringByAppendingFormat:@"&page=%ld",page];
+    if ([playmode isEqualToString:@"searchplaysong"]){
+        url = [url stringByAppendingFormat:@"&song=%@",songid];
+    }
     
-    BOOL status = [self.playlistAPI requestListenPlaylistWithPage:0];
+    BOOL status = [self.playlistAPI requestListenPlaylistWithURL:url];
     if(status == NO){
         // Fail to establish connection
         NSLog(@"Unable to create connection for playlist");
@@ -405,7 +424,7 @@ typedef enum {
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }]];
     
-    
+    page=0;
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -435,7 +454,16 @@ typedef enum {
 }
 
 - (void)api:(MoeFmAPI *)api requestFailedWithError:(NSError *)error{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现错误" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
     
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        //NSLog(@"closed");
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    
+    page=0;
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 -(void)player:(MoeFmPlayer *)player updatetrackmun:(NSInteger)trackmun{
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInteger:trackmun] forKey:@"songnum"];
@@ -472,10 +500,11 @@ typedef enum {
     if(!self.player){
         self.player = [[MoeFmPlayer alloc] initWithDelegate:self];
     }
-    
+    page = 0;
     [self next];
 }
 -(IBAction)refreshPlaylistbtn:(id)sender{
+    playmode = @"";
     [self refreshPlaylist];
 }
 

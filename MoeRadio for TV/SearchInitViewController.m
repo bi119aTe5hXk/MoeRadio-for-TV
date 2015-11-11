@@ -40,7 +40,8 @@
         searchController.searchResultsUpdater = resultsController;
         //searchController.delegate = resultsController;
         searchController.delegate = resultsController;
-        searchController.searchBar.placeholder = self.kwfield.text;
+        searchController.searchBar.placeholder = @"请输入歌曲关键词";
+        searchController.searchBar.text = self.kwfield.text;
         resultsController.keyword = self.kwfield.text;
         [self.view.window.rootViewController presentViewController:searchController animated:YES completion:^{
             NULL;
