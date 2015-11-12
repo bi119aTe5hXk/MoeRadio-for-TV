@@ -29,7 +29,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     [moefmapi cancelRequest];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"nowtype:%@",self.searchtype);
+    //NSLog(@"nowtype:%@",self.searchtype);
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.allowsSelection = YES;
@@ -90,16 +90,16 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 -(void)api:(MoeFmAPI *)api readyWithJson:(NSDictionary *)json{
     
     if ([[json valueForKey:@"information"] valueForKey:@"count"] == [NSNumber numberWithInteger:0] && page <= 1) {
-        NSLog(@"count0");
+        //NSLog(@"count0");
         songlist = [NSArray new];
-        NSLog(@"songlist:%@",songlist);
+        //NSLog(@"songlist:%@",songlist);
         [self.collectionView reloadData];
     }else{
         if ([self.searchtype isEqual:@"SongSearch"]) {
             if ([json valueForKey:@"subs"] != [NSNull null]) {
                 songlist = [songlist arrayByAddingObjectsFromArray:[json valueForKey:@"subs"]];
             }else{
-                NSLog(@"EndofPage");
+                //NSLog(@"EndofPage");
             }
             
             
@@ -107,11 +107,14 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
             if ([json valueForKey:@"wikis"] != [NSNull null]) {
                 songlist = [songlist arrayByAddingObjectsFromArray:[json valueForKey:@"wikis"]];
             }else{
-                NSLog(@"EndofPage");
+                //NSLog(@"EndofPage");
             }
             
         }
-        NSLog(@"songlist:%@",songlist);
+        if (debugmode == YES) {
+            NSLog(@"songlist:%@",songlist);
+        }
+        
         [self.collectionView reloadData];
         
     }
@@ -218,7 +221,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     {
         //LOAD MORE
         // you can also add a isLoading bool value for better dealing :D
-        NSLog(@"should load more");
+        //NSLog(@"should load more");
         page++;
         [self startSeachWithKeyword:self.keyword WithType:self.searchtype WithPage:page];
     }
