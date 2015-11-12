@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470088A11BF4A6AB004652F7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 470088A01BF4A6AB004652F7 /* Info.plist */; };
 		4711A6BC1BB7D698006B6B30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6BB1BB7D698006B6B30 /* main.m */; };
 		4711A6BF1BB7D698006B6B30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6BE1BB7D698006B6B30 /* AppDelegate.m */; };
 		4711A6C51BB7D698006B6B30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4711A6C31BB7D698006B6B30 /* Main.storyboard */; };
@@ -25,16 +26,18 @@
 		47891A1F1BF36A860030ED26 /* SearchCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47891A1E1BF36A860030ED26 /* SearchCollectionViewController.m */; };
 		47891A221BF372A90030ED26 /* SearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47891A211BF372A90030ED26 /* SearchCollectionViewCell.m */; };
 		47891A241BF37F000030ED26 /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = 47891A231BF37F000030ED26 /* small.png */; };
+		47891A281BF4A1280030ED26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47891A2A1BF4A1280030ED26 /* Localizable.strings */; };
+		47891A321BF4A58F0030ED26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47891A341BF4A58F0030ED26 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		470088A01BF4A6AB004652F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4711A6B71BB7D698006B6B30 /* MoeRadio for TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoeRadio for TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4711A6BB1BB7D698006B6B30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4711A6BD1BB7D698006B6B30 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4711A6BE1BB7D698006B6B30 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4711A6C41BB7D698006B6B30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4711A6C61BB7D698006B6B30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4711A6C81BB7D698006B6B30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4711A6CE1BB7D894006B6B30 /* MoeFmAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoeFmAPI.h; sourceTree = "<group>"; };
 		4711A6CF1BB7D894006B6B30 /* MoeFmAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoeFmAPI.m; sourceTree = "<group>"; };
 		4711A6D01BB7D894006B6B30 /* MoeFmPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoeFmPlayer.h; sourceTree = "<group>"; };
@@ -61,6 +64,11 @@
 		47891A201BF372A90030ED26 /* SearchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionViewCell.h; sourceTree = "<group>"; };
 		47891A211BF372A90030ED26 /* SearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionViewCell.m; sourceTree = "<group>"; };
 		47891A231BF37F000030ED26 /* small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small.png; sourceTree = "<group>"; };
+		47891A251BF49F740030ED26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		47891A291BF4A1280030ED26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		47891A2B1BF4A12C0030ED26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		47891A331BF4A58F0030ED26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		47891A351BF4A5910030ED26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +129,7 @@
 				47891A211BF372A90030ED26 /* SearchCollectionViewCell.m */,
 				4711A6E91BB7DF1B006B6B30 /* AudioStreamer */,
 				4711A6C61BB7D698006B6B30 /* Assets.xcassets */,
-				4711A6C81BB7D698006B6B30 /* Info.plist */,
+				470088A01BF4A6AB004652F7 /* Info.plist */,
 				47891A231BF37F000030ED26 /* small.png */,
 				4711A6BA1BB7D698006B6B30 /* Supporting Files */,
 			);
@@ -133,6 +141,8 @@
 			children = (
 				4711A6E51BB7DCF2006B6B30 /* PrefixHeader.pch */,
 				4711A6BB1BB7D698006B6B30 /* main.m */,
+				47891A2A1BF4A1280030ED26 /* Localizable.strings */,
+				47891A341BF4A58F0030ED26 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -195,6 +205,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4711A6AE1BB7D697006B6B30;
 			productRefGroup = 4711A6B81BB7D698006B6B30 /* Products */;
@@ -212,6 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4711A6C71BB7D698006B6B30 /* Assets.xcassets in Resources */,
+				47891A321BF4A58F0030ED26 /* InfoPlist.strings in Resources */,
+				470088A11BF4A6AB004652F7 /* Info.plist in Resources */,
+				47891A281BF4A1280030ED26 /* Localizable.strings in Resources */,
 				47891A241BF37F000030ED26 /* small.png in Resources */,
 				4711A6C51BB7D698006B6B30 /* Main.storyboard in Resources */,
 			);
@@ -246,8 +260,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				4711A6C41BB7D698006B6B30 /* Base */,
+				47891A251BF49F740030ED26 /* zh-Hans */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		47891A2A1BF4A1280030ED26 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47891A291BF4A1280030ED26 /* Base */,
+				47891A2B1BF4A12C0030ED26 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		47891A341BF4A58F0030ED26 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47891A331BF4A58F0030ED26 /* Base */,
+				47891A351BF4A5910030ED26 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -288,6 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = appletvos;
@@ -325,6 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;

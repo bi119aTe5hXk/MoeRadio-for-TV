@@ -147,12 +147,12 @@
     // Update Artist
     NSString *artist = [arr valueForKey:@"artist"];
     if([artist length] == 0) {
-        artist = @"未知艺术家";
+        artist = NSLocalizedString(@"UNKNOW_SONG_ARTIST", nil);
     }
     // Update Album
     NSString *album = [arr valueForKey:@"wiki_title"];
     if([album length] == 0) {
-        album = @"未知专辑";
+        album = NSLocalizedString(@"UNKNOW_SONG_ALBUM", nil);
     }
     cell.detailTextLabel.text = [self htmlEntityDecode:[NSString stringWithFormat:@"%@ / %@", artist, album] ];
     

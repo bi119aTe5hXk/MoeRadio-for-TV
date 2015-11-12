@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "5st-6j-4Ri"; */
+"5st-6j-4Ri.text" = "Subtitle";
+
+/* Class = "UISplitViewController"; title = "正在播放"; ObjectID = "8cw-Xq-yBz"; */
+"8cw-Xq-yBz.title" = "正在播放";
+
+/* Class = "UIButton"; normalTitle = "专辑搜索"; ObjectID = "KfC-cL-u1X"; */
+"KfC-cL-u1X.normalTitle" = "专辑搜索";
+
+/* Class = "UITabBarItem"; title = "搜索"; ObjectID = "Ksl-6I-xpv"; */
+"Ksl-6I-xpv.title" = "搜索";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZUx-dY-vE1"; */
+"ZUx-dY-vE1.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "请输入关键词"; ObjectID = "ZWr-9W-bLF"; */
+"ZWr-9W-bLF.placeholder" = "请输入关键词";
+
+/* Class = "UITabBarItem"; title = "正在播放"; ObjectID = "Zfc-i4-Dhc"; */
+"Zfc-i4-Dhc.title" = "正在播放";
+
+/* Class = "UIButton"; normalTitle = "歌曲搜索"; ObjectID = "aXw-pE-bdq"; */
+"aXw-pE-bdq.normalTitle" = "歌曲搜索";
+
+/* Class = "UIButton"; normalTitle = "下一曲"; ObjectID = "eQe-rd-Swg"; */
+"eQe-rd-Swg.normalTitle" = "下一曲";
+
+/* Class = "UITabBarItem"; title = "搜索"; ObjectID = "gG4-6q-xcf"; */
+"gG4-6q-xcf.title" = "搜索";
+
+/* Class = "UIButton"; normalTitle = "刷新播放列表"; ObjectID = "p21-cH-Jhc"; */
+"p21-cH-Jhc.normalTitle" = "刷新播放列表";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "vJn-YZ-YTb"; */
+"vJn-YZ-YTb.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "播放"; ObjectID = "xIz-Ln-m2c"; */
+"xIz-Ln-m2c.normalTitle" = "播放";

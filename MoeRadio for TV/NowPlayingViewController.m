@@ -232,21 +232,21 @@ typedef enum {
     // Update Song Title
     self.songNameLabel.text = [self htmlEntityDecode:[metadata objectForKey:@"sub_title"]];
     if([self.songNameLabel.text length] == 0) {
-        self.songNameLabel.text = @"未知歌曲";
+        self.songNameLabel.text = NSLocalizedString(@"UNKNOW_SONG_TITLE", nil);
     }
     [nowPlayingInfo setValue:self.songNameLabel.text forKey:MPMediaItemPropertyTitle];
     
     // Update Artist
     NSString *artist = [metadata objectForKey:@"artist"];
     if([artist length] == 0) {
-        artist = @"未知艺术家";
+        artist = NSLocalizedString(@"UNKNOW_SONG_ARTIST", nil);
     }
     [nowPlayingInfo setValue:artist forKey:MPMediaItemPropertyArtist];
     
     // Update Album
     NSString *album = [metadata objectForKey:@"wiki_title"];
     if([album length] == 0) {
-        album = @"未知专辑";
+        album = NSLocalizedString(@"UNKNOW_SONG_ALBUM", nil);
     }
     [nowPlayingInfo setValue:album forKey:MPMediaItemPropertyAlbumTitle];
     
@@ -289,16 +289,11 @@ typedef enum {
 
 - (void) resetMetadataView
 {
-    self.songNameLabel.text = @"加载中……";
-    self.songInfoLabel.text = @"请等待……（>人<）";
+    self.songNameLabel.text = NSLocalizedString(@"NOWLOADING_TITLE", nil);
+    self.songInfoLabel.text = NSLocalizedString(@"NOWLOADING_SUBTITLE", nil);
     //self.songArtworkImage.image = [UIImage imageNamed:@"cover_large.png"];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
-        [self.songProgressIndicator setProgress:1 animated:YES];//ios5
-    }
-    else {
-        self.songProgressIndicator.progress = 1;
-    }
+    [self.songProgressIndicator setProgress:1 animated:YES];
 }
 
 #pragma mark - Player Controls
@@ -390,30 +385,30 @@ typedef enum {
         case AS_WAITING_FOR_DATA:
             self.playButton.alpha = 1;
             //self.playButton.imageView.image = [UIImage imageNamed:@"pause.png"];
-            [self.playButton setTitle:@"暂停" forState:UIControlStateNormal];
+            [self.playButton setTitle:NSLocalizedString(@"PAUSE", nil) forState:UIControlStateNormal];
             [self.songBufferingIndicator startAnimating];
             break;
         case AS_BUFFERING:
             //self.playButton.imageView.image = [UIImage imageNamed:@"pause.png"];
-            [self.playButton setTitle:@"暂停" forState:UIControlStateNormal];
+            [self.playButton setTitle:NSLocalizedString(@"PAUSE", nil) forState:UIControlStateNormal];
             self.playButton.alpha = 1;
             [self.songBufferingIndicator startAnimating];
             break;
         case AS_PLAYING:
             self.playButton.alpha = 1;
             //self.playButton.imageView.image = [UIImage imageNamed:@"pause.png"];
-            [self.playButton setTitle:@"暂停" forState:UIControlStateNormal];
+            [self.playButton setTitle:NSLocalizedString(@"PAUSE", nil) forState:UIControlStateNormal];
             [self.songBufferingIndicator stopAnimating];
             break;
         case AS_PAUSED:
             self.playButton.alpha = 1;
             //self.playButton.imageView.image = [UIImage imageNamed:@"play.png"];
-            [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
+            [self.playButton setTitle:NSLocalizedString(@"PLAY", nil) forState:UIControlStateNormal];
             [self.songBufferingIndicator stopAnimating];
             break;
         case AS_STOPPED:
             //self.playButton.imageView.image = [UIImage imageNamed:@"play.png"];
-            [self.playButton setTitle:@"播放" forState:UIControlStateNormal];
+            [self.playButton setTitle:NSLocalizedString(@"PLAY", nil) forState:UIControlStateNormal];
             self.playButton.alpha = 1;
             [self.songBufferingIndicator stopAnimating];
             break;
@@ -425,10 +420,14 @@ typedef enum {
 
 - (void)player:(MoeFmPlayer *)player stoppingWithError:(NSString *)error
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现错误" message:error preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"ERROR_TITLE", nil)
+                                                                             message:error
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
     
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
         //NSLog(@"closed");
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }]];
@@ -463,10 +462,15 @@ typedef enum {
 }
 
 - (void)api:(MoeFmAPI *)api requestFailedWithError:(NSError *)error{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发现错误" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:NSLocalizedString(@"ERROR_TITLE", nil)
+                                          message:[error localizedDescription]
+                                          preferredStyle:UIAlertControllerStyleAlert];
     
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
         //NSLog(@"closed");
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }]];

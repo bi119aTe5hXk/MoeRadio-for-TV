@@ -28,18 +28,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIz-Ln-m2c">
-                                <rect key="frame" x="505" y="906" width="213" height="83"/>
-                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="播放"/>
-                                <connections>
-                                    <action selector="togglePlaybackState:" destination="8pB-B7-b3V" eventType="primaryActionTriggered" id="uco-Ib-UPI"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQe-rd-Swg">
-                                <rect key="frame" x="856" y="906" width="279" height="83"/>
+                                <rect key="frame" x="856" y="904" width="279" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="下一曲"/>
+                                <state key="normal" title="Next"/>
                                 <connections>
                                     <action selector="nextTrack:" destination="8pB-B7-b3V" eventType="primaryActionTriggered" id="7Ta-Fv-75J"/>
                                 </connections>
@@ -47,13 +39,10 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ko5-50-l2x">
                                 <rect key="frame" x="20" y="623" width="1245" height="10"/>
                             </progressView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-Hv-0gu">
-                                <rect key="frame" x="601" y="938" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p21-cH-Jhc">
                                 <rect key="frame" x="58" y="906" width="352" height="83"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="刷新播放列表"/>
+                                <state key="normal" title="Refrash Playlist"/>
                                 <connections>
                                     <action selector="refreshPlaylistbtn:" destination="8pB-B7-b3V" eventType="primaryActionTriggered" id="FJa-kw-kKu"/>
                                 </connections>
@@ -64,6 +53,17 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIz-Ln-m2c">
+                                <rect key="frame" x="536" y="906" width="213" height="83"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="togglePlaybackState:" destination="8pB-B7-b3V" eventType="primaryActionTriggered" id="uco-Ib-UPI"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a5z-Hv-0gu">
+                                <rect key="frame" x="632" y="938" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                     </view>
                     <connections>
@@ -81,7 +81,7 @@
             </objects>
             <point key="canvasLocation" x="-122.5" y="-349"/>
         </scene>
-        <!--搜索-->
+        <!--Search-->
         <scene sceneID="jDj-U3-oXq">
             <objects>
                 <viewController storyboardIdentifier="SearchInitViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="88l-SW-0hh" customClass="SearchInitViewController" sceneMemberID="viewController">
@@ -93,7 +93,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入关键词" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZWr-9W-bLF">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Keyword (song or album title, artist, etc.)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZWr-9W-bLF">
                                 <rect key="frame" x="496" y="345" width="931" height="46"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
@@ -101,7 +101,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXw-pE-bdq">
                                 <rect key="frame" x="496" y="548" width="409" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="歌曲搜索"/>
+                                <state key="normal" title="Song Search"/>
                                 <connections>
                                     <action selector="startSongSearch:" destination="88l-SW-0hh" eventType="primaryActionTriggered" id="6id-6A-Buj"/>
                                 </connections>
@@ -109,14 +109,14 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-cL-u1X">
                                 <rect key="frame" x="1018" y="548" width="409" height="86"/>
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                <state key="normal" title="专辑搜索"/>
+                                <state key="normal" title="Album Search"/>
                                 <connections>
                                     <action selector="startAlbumSearch:" destination="88l-SW-0hh" eventType="primaryActionTriggered" id="VRO-26-yXp"/>
                                 </connections>
                             </button>
                         </subviews>
                     </view>
-                    <tabBarItem key="tabBarItem" title="搜索" id="gG4-6q-xcf"/>
+                    <tabBarItem key="tabBarItem" title="Search" id="gG4-6q-xcf"/>
                     <connections>
                         <outlet property="kwfield" destination="ZWr-9W-bLF" id="Mgi-uX-Sep"/>
                     </connections>
@@ -244,7 +244,7 @@
         <scene sceneID="kDy-Fg-cab">
             <objects>
                 <splitViewController storyboardIdentifier="SplitViewController" title="正在播放" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8cw-Xq-yBz" customClass="SplitViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="正在播放" id="Zfc-i4-Dhc"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" id="Zfc-i4-Dhc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <segue destination="1St-jq-qDP" kind="relationship" relationship="masterViewController" id="pX7-uS-upx"/>

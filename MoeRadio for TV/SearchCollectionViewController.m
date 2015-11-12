@@ -149,7 +149,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         imageurl = [[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"small"];
     }else{
         cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_title"]];
-        imageurl =[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_cover"] valueForKey:@"small"];
+        imageurl =[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_cover"] valueForKey:@"square"];
     }
     
         

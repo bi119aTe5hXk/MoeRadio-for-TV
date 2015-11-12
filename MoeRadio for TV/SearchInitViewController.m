@@ -53,7 +53,7 @@
         UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:resultsController];
         searchController.searchResultsUpdater = resultsController;
         searchController.delegate = resultsController;
-        searchController.searchBar.placeholder = @"请输入歌曲关键词";
+        searchController.searchBar.placeholder = NSLocalizedString(@"SEARCH_PLACEHOLDER", nil);
         searchController.searchBar.text = self.kwfield.text;
         resultsController.keyword = self.kwfield.text;
         resultsController.searchtype = mode;
