@@ -13,7 +13,6 @@
 @interface SearchCollectionViewController : UICollectionViewController<UISearchResultsUpdating,MoeFmAPIDelegate,UISearchControllerDelegate>{
     MoeFmAPI *moefmapi;
     NSInteger page;
-    
     NSArray *songlist;
 }
 @property (nonatomic, strong) NSString *searchtype;

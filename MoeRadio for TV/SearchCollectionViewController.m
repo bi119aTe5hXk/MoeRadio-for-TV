@@ -23,34 +23,38 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    //[self.collectionView registerClass:[SearchCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    self.collectionView.dataSource = self;
-    self.collectionView.delegate = self;
-    self.collectionView.allowsSelection = YES;
-    
-    
-    // Do any additional setup after loading the view.
-    if (self.searchtype.length == 0) {
-        //self.searchtype = @"SongSearch";
+    //[self.collectionView registerClass:[SearchCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];//not need for tvOS!
     }
-    
-    moefmapi = [[MoeFmAPI alloc] initWithApiKey:MFCkey delegate:self];
-    
-    NSString *str = [NSString stringWithFormat:@"%@",self.keyword];
-    NSLog(@"strrrr:%@",str);
-    [self startSeachWithKeyword:self.keyword WithType:self.searchtype];
-    
-    //[self.collectionView reloadData];
-}
 -(void)viewWillDisappear:(BOOL)animated{
     [moefmapi cancelRequest];
 }
 -(void)viewWillAppear:(BOOL)animated{
     NSLog(@"nowtype:%@",self.searchtype);
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    self.collectionView.allowsSelection = YES;
+    songlist = [NSArray new];
+    
+    // Do any additional setup after loading the view.
+    //    if (self.searchtype.length == 0) {
+    //        self.searchtype = @"SongSearch";
+    //    }
+    
+    moefmapi = [[MoeFmAPI alloc] initWithApiKey:MFCkey delegate:self];
+    
+    //NSString *str = [NSString stringWithFormat:@"%@",self.keyword];
+    //NSLog(@"strrrr:%@",str);
+    if (page == 0) {
+        page = 1;
+    }
+    [self startSeachWithKeyword:self.keyword WithType:self.searchtype WithPage:1];
+    
+    //[self.collectionView reloadData];
+
 }
--(void)startSeachWithKeyword:(NSString *)keyword WithType:(NSString *)type{
+-(void)startSeachWithKeyword:(NSString *)keyword WithType:(NSString *)type WithPage:(NSInteger)pages{
     if ([keyword length]>0) {
-        page = 0;
+        page = pages;
         NSString *url = @"";
         if ([type  isEqualToString: @"SongSearch"]) {
             url = [searchsuburl stringByAppendingFormat:@"&sub_type=%@",@"song"];
@@ -63,8 +67,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         
         
         url = [url stringByAppendingFormat:@"&keyword=%@",keywordEncoded];
-        page++;
-        url = [url stringByAppendingFormat:@"&page=%ld",page];
+        url = [url stringByAppendingFormat:@"&page=%ld",pages];
         [moefmapi requestJsonWithURL:url];
         url = nil;
     }
@@ -86,20 +89,31 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 */
 -(void)api:(MoeFmAPI *)api readyWithJson:(NSDictionary *)json{
     
-    if ([[json valueForKey:@"information"] valueForKey:@"count"] == [NSNumber numberWithInteger:0]) {
+    if ([[json valueForKey:@"information"] valueForKey:@"count"] == [NSNumber numberWithInteger:0] && page <= 1) {
         NSLog(@"count0");
         songlist = [NSArray new];
         NSLog(@"songlist:%@",songlist);
         [self.collectionView reloadData];
     }else{
         if ([self.searchtype isEqual:@"SongSearch"]) {
-            songlist = [json valueForKey:@"subs"];
+            if ([json valueForKey:@"subs"] != [NSNull null]) {
+                songlist = [songlist arrayByAddingObjectsFromArray:[json valueForKey:@"subs"]];
+            }else{
+                NSLog(@"EndofPage");
+            }
+            
             
         }else{
-            songlist = [json valueForKey:@"wikis"];
+            if ([json valueForKey:@"wikis"] != [NSNull null]) {
+                songlist = [songlist arrayByAddingObjectsFromArray:[json valueForKey:@"wikis"]];
+            }else{
+                NSLog(@"EndofPage");
+            }
+            
         }
         NSLog(@"songlist:%@",songlist);
         [self.collectionView reloadData];
+        
     }
     
 }
@@ -205,14 +219,19 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         //LOAD MORE
         // you can also add a isLoading bool value for better dealing :D
         NSLog(@"should load more");
+        page++;
+        [self startSeachWithKeyword:self.keyword WithType:self.searchtype WithPage:page];
     }
 }
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController{
     NSString *searchstr = searchController.searchBar.text;
-    self.keyword = searchstr;
     NSLog(@"strr2:%@",searchstr);
-    if (self.searchtype.length > 0 && searchstr.length > 0) {
-        [self startSeachWithKeyword:searchstr WithType:self.searchtype];
+    if (self.searchtype.length > 0 && searchstr.length > 0 && self.keyword != searchstr) {
+        if (page == 0) {
+            page = 1;
+        }
+        self.keyword = searchstr;
+        [self startSeachWithKeyword:searchstr WithType:self.searchtype WithPage:1];
     }
     
 }
