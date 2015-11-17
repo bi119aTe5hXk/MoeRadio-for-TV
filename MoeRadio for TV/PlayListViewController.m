@@ -39,7 +39,8 @@
     UITapGestureRecognizer *selectButtonGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     selectButtonGesture.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
     [self.view addGestureRecognizer:selectButtonGesture];
-
+    
+    
     
 }
 -(void)handleTap:(UITapGestureRecognizer *)sender {
@@ -87,7 +88,33 @@
     //playlist1 = [NSArray new];
     
 }
-
+- (void)handleLongPress:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        UITableViewCell *selectedCell = sender.view;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
+        
+        NSString *albumid = [[playlist1 objectAtIndex:indexPath.row] valueForKey:@"wiki_id"];
+        NSLog(@"playalbum:%@",albumid);
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"AlbumSearch",@"SearchType",albumid,@"IDs", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayPSongNotification"
+                                                            object:self
+                                                          userInfo:dic];
+    
+    }
+    
+//    CGPoint p = [sender locationInView:self.tableView];
+//    
+//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+//    if (indexPath == nil) {
+//        NSLog(@"long press on table view but not on a row");
+//    } else if (sender.state == UIGestureRecognizerStateBegan) {
+//        NSLog(@"long press on table view at row %ld", (long)indexPath.row);
+//       
+//    } else {
+//        NSLog(@"gestureRecognizer.state = %ld", (long)sender.state);
+//    }
+    
+}
 - (void)receiveReloadTableViewNotification:(NSNotification *) notification
 {
     NSDictionary *dic = [notification userInfo];
@@ -156,7 +183,10 @@
     }
     cell.detailTextLabel.text = [self htmlEntityDecode:[NSString stringWithFormat:@"%@ / %@", artist, album] ];
     
-    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                               initWithTarget:self action:@selector(handleLongPress:)];
+    [longPress setMinimumPressDuration:1.0];
+    [cell addGestureRecognizer:longPress];
     
     
     // Configure the cell...
