@@ -46,9 +46,9 @@
 -(void)handleTap:(UITapGestureRecognizer *)sender {
     if (debugmode == YES) {
         if (sender.state == UIGestureRecognizerStateBegan) {
-            NSLog(@"button pressed");
+            //NSLog(@"button pressed");
         } else if (sender.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"button released");
+            //NSLog(@"button released");
         }
     }
     
@@ -76,13 +76,7 @@
             default:
                 break;
         }
-        
-        
     }
-//    if (((UIPress *)[presses anyObject]).type == UIPressTypeMenu) {
-//        return [super pressesEnded:presses withEvent:event];
-//    }
-    
 }
 -(void)viewWillAppear:(BOOL)animated{
     //playlist1 = [NSArray new];
@@ -94,7 +88,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
         
         NSString *albumid = [[playlist1 objectAtIndex:indexPath.row] valueForKey:@"wiki_id"];
-        NSLog(@"playalbum:%@",albumid);
+        //NSLog(@"playalbum:%@",albumid);
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"AlbumSearch",@"SearchType",albumid,@"IDs", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayPSongNotification"
                                                             object:self
@@ -133,9 +127,8 @@
     playlist1 = playlist;
     [self.tableView reloadData];
     //NSLog(@"PlayListList:%@",playlist1);
-    //[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
     
 }
 

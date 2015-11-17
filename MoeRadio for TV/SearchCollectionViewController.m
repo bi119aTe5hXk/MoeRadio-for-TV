@@ -24,7 +24,10 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     
     // Register cell classes
     //[self.collectionView registerClass:[SearchCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];//not need for tvOS!
-    }
+    
+    
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [moefmapi cancelRequest];
 }
@@ -146,15 +149,16 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     NSString *imageurl = @"";
     if ([self.searchtype isEqual:@"SongSearch"]) {
         cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"]];
-        imageurl = [[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"small"];
+        imageurl = [[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"square"];
     }else{
         cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_title"]];
         imageurl =[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_cover"] valueForKey:@"square"];
     }
     
         
-        
+    cell.songimage.image = nil;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
         NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageurl]];
         if (imgData) {
             UIImage *image = [UIImage imageWithData:imgData];
@@ -164,6 +168,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
                 });
             }
         }
+        
     });
 
     
@@ -228,7 +233,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 }
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController{
     NSString *searchstr = searchController.searchBar.text;
-    NSLog(@"strr2:%@",searchstr);
+    //NSLog(@"strr2:%@",searchstr);
     if (self.searchtype.length > 0 && searchstr.length > 0 && self.keyword != searchstr) {
         if (page == 0) {
             page = 1;

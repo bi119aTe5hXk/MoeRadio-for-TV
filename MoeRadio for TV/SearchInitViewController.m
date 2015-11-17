@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     mode = @"";
+    
 }
 
 - (void)didReceiveMemoryWarning {

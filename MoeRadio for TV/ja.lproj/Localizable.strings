@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  MoeRadio for TV
+
+  Created by bi119aTe5hXk on 2015/11/12.
+  Copyright © 2015年 HT&L. All rights reserved.
+*/
+//NSLocalizedString(@"", nil);
+"UNKNOW_SONG_TITLE" = "未知の曲";
+"UNKNOW_SONG_ARTIST" = "作者不明";
+"UNKNOW_SONG_ALBUM" = "未知のアルバム";
+
+"NOWLOADING_TITLE" = "ロード……";
+"NOWLOADING_SUBTITLE" = "お待ちください……（>人<）";
+
+"PAUSE" = "停止";
+"PLAY" = "再生";
+"ERROR_TITLE" = "エラー発見 OAO！";
+"OK" = "OK";
+"SEARCH_PLACEHOLDER" = "キーワード（曲、アーティストの名前またはアルバムタイトル）";

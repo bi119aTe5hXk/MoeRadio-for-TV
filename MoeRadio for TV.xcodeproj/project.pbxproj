@@ -32,6 +32,9 @@
 
 /* Begin PBXFileReference section */
 		470088A01BF4A6AB004652F7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		470088FE1BFB421D004652F7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		470088FF1BFB421D004652F7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		470089001BFB421D004652F7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4711A6B71BB7D698006B6B30 /* MoeRadio for TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoeRadio for TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4711A6BB1BB7D698006B6B30 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4711A6BD1BB7D698006B6B30 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 				en,
 				Base,
 				"zh-Hans",
+				ja,
 			);
 			mainGroup = 4711A6AE1BB7D697006B6B30;
 			productRefGroup = 4711A6B81BB7D698006B6B30 /* Products */;
@@ -261,6 +265,7 @@
 			children = (
 				4711A6C41BB7D698006B6B30 /* Base */,
 				47891A251BF49F740030ED26 /* zh-Hans */,
+				470088FE1BFB421D004652F7 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			children = (
 				47891A291BF4A1280030ED26 /* Base */,
 				47891A2B1BF4A12C0030ED26 /* zh-Hans */,
+				470088FF1BFB421D004652F7 /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 			children = (
 				47891A331BF4A58F0030ED26 /* Base */,
 				47891A351BF4A5910030ED26 /* zh-Hans */,
+				470089001BFB421D004652F7 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
