@@ -40,11 +40,11 @@
 */
 
 -(IBAction)startSongSearch:(id)sender{
-    mode = @"SongSearch";
+    mode = Type_Song_Search;
     [self startSearch];
 }
 -(IBAction)startAlbumSearch:(id)sender{
-    mode = @"AlbumSearch";
+    mode = Type_Album_Search;
     [self startSearch];
 }
 -(void)startSearch{

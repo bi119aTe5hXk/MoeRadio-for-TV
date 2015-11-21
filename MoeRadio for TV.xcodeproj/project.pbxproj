@@ -22,6 +22,7 @@
 		4711A6EC1BB7EA27006B6B30 /* PlayListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */; };
 		4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EE1BB7F650006B6B30 /* SplitViewController.m */; };
 		4721561C1BE4B5B700B6D337 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4721561B1BE4B5B700B6D337 /* AVFoundation.framework */; };
+		475F93C31C007DDB00AB0BF8 /* TabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475F93C21C007DDB00AB0BF8 /* TabbarViewController.m */; };
 		47891A1C1BF36A1E0030ED26 /* SearchInitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47891A1B1BF36A1E0030ED26 /* SearchInitViewController.m */; };
 		47891A1F1BF36A860030ED26 /* SearchCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47891A1E1BF36A860030ED26 /* SearchCollectionViewController.m */; };
 		47891A221BF372A90030ED26 /* SearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47891A211BF372A90030ED26 /* SearchCollectionViewCell.m */; };
@@ -60,6 +61,8 @@
 		4711A6ED1BB7F650006B6B30 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		4711A6EE1BB7F650006B6B30 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		4721561B1BE4B5B700B6D337 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		475F93C11C007DDB00AB0BF8 /* TabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbarViewController.h; sourceTree = "<group>"; };
+		475F93C21C007DDB00AB0BF8 /* TabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbarViewController.m; sourceTree = "<group>"; };
 		47891A1A1BF36A1E0030ED26 /* SearchInitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInitViewController.h; sourceTree = "<group>"; };
 		47891A1B1BF36A1E0030ED26 /* SearchInitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchInitViewController.m; sourceTree = "<group>"; };
 		47891A1D1BF36A860030ED26 /* SearchCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCollectionViewController.h; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 				4711A6DC1BB7D947006B6B30 /* API.h */,
 				4711A6BD1BB7D698006B6B30 /* AppDelegate.h */,
 				4711A6BE1BB7D698006B6B30 /* AppDelegate.m */,
+				475F93C11C007DDB00AB0BF8 /* TabbarViewController.h */,
+				475F93C21C007DDB00AB0BF8 /* TabbarViewController.m */,
 				4711A6ED1BB7F650006B6B30 /* SplitViewController.h */,
 				4711A6EE1BB7F650006B6B30 /* SplitViewController.m */,
 				4711A6E61BB7DEAA006B6B30 /* NowPlayingViewController.h */,
@@ -246,6 +251,7 @@
 				47891A1F1BF36A860030ED26 /* SearchCollectionViewController.m in Sources */,
 				4711A6E81BB7DEAA006B6B30 /* NowPlayingViewController.m in Sources */,
 				4711A6BF1BB7D698006B6B30 /* AppDelegate.m in Sources */,
+				475F93C31C007DDB00AB0BF8 /* TabbarViewController.m in Sources */,
 				4711A6D91BB7D90A006B6B30 /* AudioStreamer.m in Sources */,
 				4711A6EC1BB7EA27006B6B30 /* PlayListViewController.m in Sources */,
 				47891A221BF372A90030ED26 /* SearchCollectionViewCell.m in Sources */,

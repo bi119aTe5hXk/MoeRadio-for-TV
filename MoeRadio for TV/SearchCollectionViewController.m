@@ -40,7 +40,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     
     // Do any additional setup after loading the view.
     //    if (self.searchtype.length == 0) {
-    //        self.searchtype = @"SongSearch";
+    //        self.searchtype = Type_Song_Search;
     //    }
     
     moefmapi = [[MoeFmAPI alloc] initWithApiKey:MFCkey delegate:self];
@@ -59,7 +59,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     if ([keyword length]>0) {
         page = pages;
         NSString *url = @"";
-        if ([type  isEqualToString: @"SongSearch"]) {
+        if ([type  isEqualToString:Type_Song_Search]) {
             url = [searchsuburl stringByAppendingFormat:@"&sub_type=%@",@"song"];
         }else{
             url = [searchwikiurl stringByAppendingFormat:@"&wiki_type=%@",@"music"];
@@ -98,7 +98,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         //NSLog(@"songlist:%@",songlist);
         [self.collectionView reloadData];
     }else{
-        if ([self.searchtype isEqual:@"SongSearch"]) {
+        if ([self.searchtype isEqual:Type_Song_Search]) {
             if ([json valueForKey:@"subs"] != [NSNull null]) {
                 songlist = [songlist arrayByAddingObjectsFromArray:[json valueForKey:@"subs"]];
             }else{
@@ -147,7 +147,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     
     
     NSString *imageurl = @"";
-    if ([self.searchtype isEqual:@"SongSearch"]) {
+    if ([self.searchtype isEqual:Type_Song_Search]) {
         cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"]];
         imageurl = [[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"square"];
     }else{
@@ -181,7 +181,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 #pragma mark <UICollectionViewDelegate>
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSString *sid = @"";
-    if ([self.searchtype isEqual:@"SongSearch"]) {
+    if ([self.searchtype isEqual:Type_Song_Search]) {
        sid = [[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_id"];
         
     }else{

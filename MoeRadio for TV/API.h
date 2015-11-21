@@ -14,4 +14,5 @@
 #define searchsuburl @"http://api.moefou.org/search/sub.json?perpage=50"
 #define searchwikiurl @"http://api.moefou.org/search/wiki.json?perpage=50"
 
-
+#define Type_Song_Search @"SongSearch"
+#define Type_Album_Search @"AlbumSearch"

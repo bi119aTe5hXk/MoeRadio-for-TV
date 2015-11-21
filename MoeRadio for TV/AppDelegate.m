@@ -17,11 +17,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"Init...");
+    NSLog(@"Powered by");
+    NSLog(@" __   __              __            ");
+    NSLog(@"|  ＼／  |           ／ _|           ");
+    NSLog(@"| ＼  ／ | ___   ___| |_ ___  __  __ ");
+    NSLog(@"| |＼／| |／_ ＼/  _ ＼  _／_ ＼| | | |");
+    NSLog(@"| |   | |  (_) |  __／ || (_) | |_| |");
+    NSLog(@"|_|   |_|＼___／＼___|_| ＼___／＼__,_|");
+    NSLog(@"Product by ©HT&L 2009-2015, Developer: @bi119aTe5hXk. @Ariagle. @gregwym.");
+    NSLog(@"なにこれ(°Д°)？！");
     // Override point for customization after application launch.
     @synchronized (self) {
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-        //fsAudioStreamPrivateActiveSessions[[NSNumber numberWithUnsignedLong:(unsigned long)self]] = @"";
     }
     
     

@@ -92,7 +92,7 @@ typedef enum {
     MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
     
     [commandCenter.togglePlayPauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-        NSLog(@"toggle button pressed");
+        NSLog(@"toggle button pressed1");
         [self startOrPause];
         return MPRemoteCommandHandlerStatusSuccess;
     }];
@@ -105,7 +105,7 @@ typedef enum {
     return YES;
 }
 -(void)receivePlayPSongNotification:(NSNotification *)notify{
-    if ([[[notify userInfo] valueForKey:@"SearchType"]isEqualToString:@"SongSearch"]) {
+    if ([[[notify userInfo] valueForKey:@"SearchType"]isEqualToString:Type_Song_Search]) {
         songid = [[[notify userInfo] valueForKey:@"IDs"] stringValue];
         playmode = @"searchplaysong";
     }else{
@@ -146,7 +146,7 @@ typedef enum {
                 [self startOrPause];
                 break;
             case UIPressTypeMenu:
-                return [super pressesEnded:presses withEvent:event];
+                //return [super pressesEnded:presses withEvent:event];
                 break;
                 
             default:
@@ -366,12 +366,7 @@ typedef enum {
 
 - (void)player:(MoeFmPlayer *)player updateProgress:(float)percentage
 {
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
-        [self.songProgressIndicator setProgress:percentage animated:YES];//ios5
-    }
-    else {
-        self.songProgressIndicator.progress = percentage;
-    }
+    [self.songProgressIndicator setProgress:percentage animated:YES];
 }
 
 - (void)player:(MoeFmPlayer *)player updateMetadata:(NSDictionary *)metadata

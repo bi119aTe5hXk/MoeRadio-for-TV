@@ -46,9 +46,9 @@
 -(void)handleTap:(UITapGestureRecognizer *)sender {
     if (debugmode == YES) {
         if (sender.state == UIGestureRecognizerStateBegan) {
-            //NSLog(@"button pressed");
+            NSLog(@"button pressed");
         } else if (sender.state == UIGestureRecognizerStateEnded) {
-            //NSLog(@"button released");
+            NSLog(@"button released");
         }
     }
     
@@ -59,19 +59,17 @@
     for (UIPress *item in presses)
     {
         if (debugmode == YES) {
-            
             NSLog(@"item = %@", item);
         }
         
         switch (item.type) {
             case UIPressTypePlayPause:
-                //[self startOrPause];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayControlNotification"
                                                                     object:self
                                                                   userInfo:nil];
                 break;
             case UIPressTypeMenu:
-                return [super pressesEnded:presses withEvent:event];
+                //return [super pressesEnded:presses withEvent:event];
                 break;
             default:
                 break;
@@ -89,7 +87,7 @@
         
         NSString *albumid = [[playlist1 objectAtIndex:indexPath.row] valueForKey:@"wiki_id"];
         //NSLog(@"playalbum:%@",albumid);
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"AlbumSearch",@"SearchType",albumid,@"IDs", nil];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:Type_Album_Search,@"SearchType",albumid,@"IDs", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayPSongNotification"
                                                             object:self
                                                           userInfo:dic];
