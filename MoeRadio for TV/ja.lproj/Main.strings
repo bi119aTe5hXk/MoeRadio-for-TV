@@ -37,3 +37,9 @@
 
 /* Class = "UIButton"; normalTitle = "播放"; ObjectID = "xIz-Ln-m2c"; */
 "xIz-Ln-m2c.normalTitle" = "再生";
+
+"L4a-g4-F97.title" = "萌電波について";
+"QI4-nT-eKQ.text" = "使い方のヒント";
+"G6r-zG-53s.text" = "零、曲のリストに選択ボタンが長押と、曲のアルバムを再生することができます。";
+"1jl-Pl-ZkI.text" = "壱、再生と一時停止、または再開することはリモコンの再生ボタンにできます、でもアプリの外で再生を再開することはまだできません。";
+"rNG-jh-NH9.text" = "弐、もちろん、siriの検索もまだできません。";

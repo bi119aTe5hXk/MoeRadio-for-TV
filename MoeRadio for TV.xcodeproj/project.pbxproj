@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		470088A11BF4A6AB004652F7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 470088A01BF4A6AB004652F7 /* Info.plist */; };
 		4711A6BC1BB7D698006B6B30 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6BB1BB7D698006B6B30 /* main.m */; };
 		4711A6BF1BB7D698006B6B30 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6BE1BB7D698006B6B30 /* AppDelegate.m */; };
 		4711A6C51BB7D698006B6B30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4711A6C31BB7D698006B6B30 /* Main.storyboard */; };
@@ -22,6 +21,7 @@
 		4711A6EC1BB7EA27006B6B30 /* PlayListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EB1BB7EA27006B6B30 /* PlayListViewController.m */; };
 		4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4711A6EE1BB7F650006B6B30 /* SplitViewController.m */; };
 		4721561C1BE4B5B700B6D337 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4721561B1BE4B5B700B6D337 /* AVFoundation.framework */; };
+		4740D9961C6B49C600C089F3 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4740D9951C6B49C600C089F3 /* AboutViewController.m */; };
 		475F93C31C007DDB00AB0BF8 /* TabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475F93C21C007DDB00AB0BF8 /* TabbarViewController.m */; };
 		47891A1C1BF36A1E0030ED26 /* SearchInitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47891A1B1BF36A1E0030ED26 /* SearchInitViewController.m */; };
 		47891A1F1BF36A860030ED26 /* SearchCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47891A1E1BF36A860030ED26 /* SearchCollectionViewController.m */; };
@@ -61,6 +61,8 @@
 		4711A6ED1BB7F650006B6B30 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		4711A6EE1BB7F650006B6B30 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		4721561B1BE4B5B700B6D337 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4740D9941C6B49C600C089F3 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		4740D9951C6B49C600C089F3 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		475F93C11C007DDB00AB0BF8 /* TabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabbarViewController.h; sourceTree = "<group>"; };
 		475F93C21C007DDB00AB0BF8 /* TabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabbarViewController.m; sourceTree = "<group>"; };
 		47891A1A1BF36A1E0030ED26 /* SearchInitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchInitViewController.h; sourceTree = "<group>"; };
@@ -135,6 +137,8 @@
 				47891A1E1BF36A860030ED26 /* SearchCollectionViewController.m */,
 				47891A201BF372A90030ED26 /* SearchCollectionViewCell.h */,
 				47891A211BF372A90030ED26 /* SearchCollectionViewCell.m */,
+				4740D9941C6B49C600C089F3 /* AboutViewController.h */,
+				4740D9951C6B49C600C089F3 /* AboutViewController.m */,
 				4711A6E91BB7DF1B006B6B30 /* AudioStreamer */,
 				4711A6C61BB7D698006B6B30 /* Assets.xcassets */,
 				470088A01BF4A6AB004652F7 /* Info.plist */,
@@ -192,7 +196,7 @@
 		4711A6AF1BB7D697006B6B30 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "HT&L";
 				TargetAttributes = {
 					4711A6B61BB7D698006B6B30 = {
@@ -233,7 +237,6 @@
 			files = (
 				4711A6C71BB7D698006B6B30 /* Assets.xcassets in Resources */,
 				47891A321BF4A58F0030ED26 /* InfoPlist.strings in Resources */,
-				470088A11BF4A6AB004652F7 /* Info.plist in Resources */,
 				47891A281BF4A1280030ED26 /* Localizable.strings in Resources */,
 				47891A241BF37F000030ED26 /* small.png in Resources */,
 				4711A6C51BB7D698006B6B30 /* Main.storyboard in Resources */,
@@ -257,6 +260,7 @@
 				47891A221BF372A90030ED26 /* SearchCollectionViewCell.m in Sources */,
 				4711A6D31BB7D894006B6B30 /* MoeFmPlayer.m in Sources */,
 				47891A1C1BF36A1E0030ED26 /* SearchInitViewController.m in Sources */,
+				4740D9961C6B49C600C089F3 /* AboutViewController.m in Sources */,
 				4711A6BC1BB7D698006B6B30 /* main.m in Sources */,
 				4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */,
 				4711A6D21BB7D894006B6B30 /* MoeFmAPI.m in Sources */,
@@ -386,14 +390,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Huang Xingkai (ZSK3Q7V672)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "MoeRadio for TV/PrefixHeader.pch";
 				INFOPLIST_FILE = "MoeRadio for TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HTandL.MoeRadioTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3dbd50e4-9591-463c-ba96-7bea814221e6";
+				PROVISIONING_PROFILE = "";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -403,14 +408,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Huang Xingkai (HR66SGQEZ4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PREFIX_HEADER = "MoeRadio for TV/PrefixHeader.pch";
 				INFOPLIST_FILE = "MoeRadio for TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HTandL.MoeRadioTV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e83f3497-747b-43df-878b-b2a5f8ddd444";
+				PROVISIONING_PROFILE = "";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;

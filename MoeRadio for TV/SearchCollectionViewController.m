@@ -57,6 +57,7 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
 }
 -(void)startSeachWithKeyword:(NSString *)keyword WithType:(NSString *)type WithPage:(NSInteger)pages{
     if ([keyword length]>0) {
+        
         page = pages;
         NSString *url = @"";
         if ([type  isEqualToString:Type_Song_Search]) {
@@ -64,7 +65,6 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         }else{
             url = [searchwikiurl stringByAppendingFormat:@"&wiki_type=%@",@"music"];
         }
-        
         
         NSString *keywordEncoded = [keyword stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
         
@@ -100,7 +100,22 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     }else{
         if ([self.searchtype isEqual:Type_Song_Search]) {
             if ([json valueForKey:@"subs"] != [NSNull null]) {
-                songlist = [songlist arrayByAddingObjectsFromArray:[json valueForKey:@"subs"]];
+                NSArray *arr = [json valueForKey:@"subs"];
+                
+                //remove songs that don't have mp3 files
+                for (NSInteger i=0; i<[arr count]; i++) {
+                    NSArray *arr2 = [arr objectAtIndex:i];
+                    //NSLog(@"count:%ld arr2:%@",[[arr2 valueForKey:@"sub_upload"] count],arr2);
+                    if ([[arr2 valueForKey:@"sub_upload"] count] > 0) {
+                        //NSLog(@"yesithaveat:%ld",i);
+                        songlist = [songlist arrayByAddingObject:arr2];
+                        
+                        arr2=nil;
+                    }
+                }
+                arr = nil;
+                
+                
             }else{
                 //NSLog(@"EndofPage");
             }
@@ -150,6 +165,10 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     if ([self.searchtype isEqual:Type_Song_Search]) {
         cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"sub_title"]];
         imageurl = [[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_cover"] valueForKey:@"square"];
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]
+                                                   initWithTarget:self action:@selector(handleLongPress:)];
+        [longPress setMinimumPressDuration:1.0];
+        [cell addGestureRecognizer:longPress];
     }else{
         cell.songtitle.text = [self htmlEntityDecode:[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_title"]];
         imageurl =[[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki_cover"] valueForKey:@"square"];
@@ -175,6 +194,9 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     
     
     cell.songimage.adjustsImageWhenAncestorFocused = YES;
+    
+    
+    
     return cell;
 }
 
@@ -192,6 +214,26 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
                                                         object:self
                                                       userInfo:dic];
     //[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer*)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        UICollectionViewCell *selectedCell = sender.view;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:selectedCell];
+        
+        NSString *albumid = [[[songlist objectAtIndex:indexPath.row] valueForKey:@"wiki"] valueForKey:@"wiki_id"];
+        if (debugmode == YES) {
+            NSLog(@"playalbum:%@",albumid);
+        }
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:Type_Album_Search,@"SearchType",albumid,@"IDs", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PlayPSongNotification"
+                                                            object:self
+                                                          userInfo:dic];
+    }
+    
+    
+    
+    
 }
 
 //// Uncomment this method to specify if the specified item should be highlighted during tracking
@@ -226,7 +268,10 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
     {
         //LOAD MORE
         // you can also add a isLoading bool value for better dealing :D
-        //NSLog(@"should load more");
+        if (debugmode == YES) {
+            NSLog(@"should load more");
+        }
+        
         page++;
         [self startSeachWithKeyword:self.keyword WithType:self.searchtype WithPage:page];
     }
@@ -240,6 +285,9 @@ static NSString * const reuseIdentifier = @"SearchCollectionViewCell";
         }
         self.keyword = searchstr;
         [self startSeachWithKeyword:searchstr WithType:self.searchtype WithPage:1];
+    }else if (searchstr.length <= 0 || self.keyword <= 0){
+        songlist = [NSArray new];
+        [self.collectionView reloadData];
     }
     
 }

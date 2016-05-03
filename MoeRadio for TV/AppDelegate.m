@@ -25,7 +25,7 @@
     NSLog(@"| |＼／| |／_ ＼/  _ ＼  _／_ ＼| | | |");
     NSLog(@"| |   | |  (_) |  __／ || (_) | |_| |");
     NSLog(@"|_|   |_|＼___／＼___|_| ＼___／＼__,_|");
-    NSLog(@"Product by ©HT&L 2009-2015, Developer: @bi119aTe5hXk. @Ariagle. @gregwym.");
+    NSLog(@"Product by ©HT&L 2009-2016, Developer: @bi119aTe5hXk. @Ariagle. @gregwym.");
     NSLog(@"なにこれ(°Д°)？！");
     // Override point for customization after application launch.
     @synchronized (self) {

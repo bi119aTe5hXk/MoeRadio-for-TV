@@ -90,16 +90,33 @@ typedef enum {
     
     
     MPRemoteCommandCenter *commandCenter = [MPRemoteCommandCenter sharedCommandCenter];
+    MPRemoteCommand *playpausecom = commandCenter.togglePlayPauseCommand;
+    playpausecom.enabled = YES;
+    [playpausecom addTarget:self action:@selector(playpauseEvent)];
     
-    [commandCenter.togglePlayPauseCommand addTargetWithHandler:^MPRemoteCommandHandlerStatus(MPRemoteCommandEvent * _Nonnull event) {
-        NSLog(@"toggle button pressed1");
-        [self startOrPause];
-        return MPRemoteCommandHandlerStatusSuccess;
-    }];
-    [commandCenter.togglePlayPauseCommand addTarget:self action:@selector(startOrPause)];//this is shit
+    
+    MPRemoteCommand *pausecom = commandCenter.pauseCommand;
+    pausecom.enabled = YES;
+    [pausecom addTarget:self action:@selector(pauseEvent)];
+    
+    MPRemoteCommand *playcom = commandCenter.playCommand;
+    playcom.enabled = YES;
+    [playcom addTarget:self action:@selector(playEvent)];
+    
     
 
-
+}
+-(void)pauseEvent{
+    NSLog(@"MPRemoteCommand Pause");
+    [self pause];
+}
+-(void)playEvent{
+    NSLog(@"MPRemoteCommand start");
+    [self start];
+}
+-(void)playpauseEvent{
+    NSLog(@"MPRemoteCommand startOrPause");
+    [self startOrPause];
 }
 - (BOOL)canBecomeFirstResponder {
     return YES;
@@ -160,44 +177,45 @@ typedef enum {
 //    }
     
 }
+
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(nullable UIEvent *)event{
     if (motion == UIEventSubtypeMotionShake) {
         playmode = @"";
         [self refreshPlaylist];
     }
 }
-/* The iPod controls will send these events when the app is in the background */
-- (void)remoteControlReceivedWithEvent:(UIEvent *)event
-{
-    //[[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
-    if (debugmode == YES) {
-        NSLog(@"remoteControlReceived,type:%ld",(long)event.subtype);
-    }
-    switch (event.subtype) {
-        case UIEventSubtypeRemoteControlTogglePlayPause:
-            [self startOrPause];
-            break;
-        case UIEventSubtypeRemoteControlPlay:
-            [self startOrPause];
-            break;
-        case UIEventSubtypeRemoteControlPause:
-            [self startOrPause];
-            break;
-        case UIEventSubtypeRemoteControlStop:
-            [self startOrPause];
-            break;
-        case UIEventSubtypeRemoteControlNextTrack:
-            [self next];
-            break;
-        case UIEventSubtypeRemoteControlPreviousTrack:
-            [self previous];
-            break;
-        
-        default:
-            break;
-    }
-
-}
+///* The iPod controls will send these events when the app is in the background */
+//- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+//{
+//    //[[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+//    if (debugmode == YES) {
+//        NSLog(@"remoteControlReceived,type:%ld",(long)event.subtype);
+//    }
+//    switch (event.subtype) {
+//        case UIEventSubtypeRemoteControlTogglePlayPause:
+//            [self startOrPause];
+//            break;
+//        case UIEventSubtypeRemoteControlPlay:
+//            [self startOrPause];
+//            break;
+//        case UIEventSubtypeRemoteControlPause:
+//            [self startOrPause];
+//            break;
+//        case UIEventSubtypeRemoteControlStop:
+//            [self startOrPause];
+//            break;
+//        case UIEventSubtypeRemoteControlNextTrack:
+//            [self next];
+//            break;
+//        case UIEventSubtypeRemoteControlPreviousTrack:
+//            [self previous];
+//            break;
+//        
+//        default:
+//            break;
+//    }
+//
+//}
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
