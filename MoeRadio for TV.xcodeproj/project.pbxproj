@@ -29,6 +29,7 @@
 		47891A241BF37F000030ED26 /* small.png in Resources */ = {isa = PBXBuildFile; fileRef = 47891A231BF37F000030ED26 /* small.png */; };
 		47891A281BF4A1280030ED26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47891A2A1BF4A1280030ED26 /* Localizable.strings */; };
 		47891A321BF4A58F0030ED26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 47891A341BF4A58F0030ED26 /* InfoPlist.strings */; };
+		478A51801CD88BC0003DF9BF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 478A517F1CD88BC0003DF9BF /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		47891A2B1BF4A12C0030ED26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		47891A331BF4A58F0030ED26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		47891A351BF4A5910030ED26 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		478A517F1CD88BC0003DF9BF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		4711A6AE1BB7D697006B6B30 = {
 			isa = PBXGroup;
 			children = (
+				478A517F1CD88BC0003DF9BF /* README.md */,
 				4721561B1BE4B5B700B6D337 /* AVFoundation.framework */,
 				4711A6E31BB7DB84006B6B30 /* Foundation.framework */,
 				4711A6E11BB7DB73006B6B30 /* UIKit.framework */,
@@ -262,6 +265,7 @@
 				47891A1C1BF36A1E0030ED26 /* SearchInitViewController.m in Sources */,
 				4740D9961C6B49C600C089F3 /* AboutViewController.m in Sources */,
 				4711A6BC1BB7D698006B6B30 /* main.m in Sources */,
+				478A51801CD88BC0003DF9BF /* README.md in Sources */,
 				4711A6EF1BB7F650006B6B30 /* SplitViewController.m in Sources */,
 				4711A6D21BB7D894006B6B30 /* MoeFmAPI.m in Sources */,
 			);
