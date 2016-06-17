@@ -106,6 +106,8 @@ typedef enum {
     
 
 }
+
+
 -(void)pauseEvent{
     NSLog(@"MPRemoteCommand Pause");
     [self pause];

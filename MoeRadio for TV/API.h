@@ -5,7 +5,7 @@
 //  Created by bi119aTe5hXk on 12-10-8.
 //  Copyright (c) 2013年 HT&L. All rights reserved.
 //
-#define debugmode 0
+#define debugmode 1
 
 
 #define MFCkey @"749ac44d937e891d96f75a6c99b541070560addff"
